@@ -4,7 +4,6 @@ namespace TroiaStudio\YoutubeAPI;
 use Nette;
 use Composer\CaBundle\CaBundle;
 use GuzzleHttp\Client;
-use Tracy\Debugger;
 
 class Reader
 {
