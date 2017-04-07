@@ -1,6 +1,6 @@
 # Troia Studio / Youtube API
 
-[![Travis] (https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=master)](https://travis-ci.org/TroiaStudio/YoutubeAPI)
+[![Travis](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=master)](https://travis-ci.org/TroiaStudio/YoutubeAPI)
 
 ## Requirements
 - php >= 5.6
