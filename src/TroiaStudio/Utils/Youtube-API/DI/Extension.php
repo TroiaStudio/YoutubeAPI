@@ -23,7 +23,7 @@ class Extension extends CompilerExtension
 
         $builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
             ->setClass('TroaiaStudio\YoutubeAPI\Reader', [
-               'apiKey' => $config['apikey'],
+               'apiKey' => $config['apiKey'],
                 'httpClient' => $config['httpClient']
             ]);
     }
