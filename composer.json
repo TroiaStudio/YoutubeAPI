@@ -12,7 +12,8 @@
     ],
     "autoload": {
       "psr-4": {
-        "TroiaStudio\\YoutubeAPI\\": "src/TroiaStudio/Utils/Youtube-API"
+        "TroiaStudio\\YoutubeAPI\\": "src/TroiaStudio/Utils/Youtube-API",
+        "TroiaStudio\\YoutubeAPI\\DI": "src/TroiaStudio/Utils/Youtube-API/DI"
       }
     },
     "require": {
