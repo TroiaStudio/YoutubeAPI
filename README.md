@@ -23,3 +23,8 @@ or manual edit composer.json in your project
     "troiastudio/youtube-api": ">= 0.1"
 }
 ```
+
+Documentation
+=============
+
+[English documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/index.md) | [Czech documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/index.md)
