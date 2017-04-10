@@ -12,7 +12,7 @@
 
 Package Installation
 --------------------
-The best way to install Nette Calendar is using [Composer](http://getcomposer.org/):
+The best way to install Troia Studio / Youtube API is using [Composer](http://getcomposer.org/):
 
 ```sh
 $ composer require troiastudio/youtube-api
@@ -24,7 +24,7 @@ or manual edit composer.json in your project
 
 ```json
 "require": {
-    "troiastudio/youtube-api": ">= 1.0.3"
+    "troiastudio/youtube-api": ">= 1.0.4"
 }
 ```
 
