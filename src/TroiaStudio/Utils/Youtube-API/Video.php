@@ -45,5 +45,18 @@ class Video
     /**
      * @var array
      */
-    public $thumbs;
+    public $thumbs = [
+        'default' => null,
+        'medium' => null,
+        'high' => null,
+        'standard' => null,
+        'maxres' => null
+    ];
+
+    public function __construct()
+    {
+        foreach ($this->thumbs as $index => $thumb) {
+            $this->thumbs[$index] = new Thumbnail;
+        }
+    }
 }

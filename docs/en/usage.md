@@ -79,3 +79,23 @@ Every properties you find in [Video documentation](https://github.com/TroiaStudi
  </div>
 ```
 
+### Exception
+you can turn of throw exception and get empty video object
+
+#### Basic
+```php
+$apiKey = 'MySuperSecretYoutubeApiKey';
+$youtube = new \TroiaStudio\YoutubeAPI\Reader($apiKey, null, false);
+```
+
+#### Nette
+
+config.neon
+```neon
+extensions: 
+    youtubeAPI: TroiaStudio\YoutubeAPI\DI\Extension
+
+youtubeAPI:
+    apiKey: 'MySuperSecretYoutubeApiKey'
+    exception: false
+```

@@ -18,13 +18,15 @@ class Extension extends CompilerExtension
         $builder = $this->getContainerBuilder();
         $config = $this->getConfig([
             'apiKey' => null,
-            'httpClient' => null
+            'httpClient' => null,
+            'exception' => true
         ]);
 
         $builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
             ->setClass('TroiaStudio\YoutubeAPI\Reader', [
-               'apiKey' => $config['apiKey'],
-                'httpClient' => $config['httpClient']
+                'apiKey' => $config['apiKey'],
+                'httpClient' => $config['httpClient'],
+                'exception' => $config['exception']
             ]);
     }
 }

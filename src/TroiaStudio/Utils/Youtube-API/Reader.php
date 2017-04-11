@@ -46,7 +46,10 @@ class Reader
     /** @var Client */
     private $httpClient;
 
-    public function __construct($apiKey = null, $httpClient = null)
+    /** @var bool */
+    private $exception;
+
+    public function __construct($apiKey = null, $httpClient = null, $exception = true)
     {
         if ($apiKey !== null) {
             $this->apiKey = $apiKey;
@@ -58,6 +61,7 @@ class Reader
             ]);
         }
         $this->httpClient = $httpClient;
+        $this->exception = $exception;
     }
 
     public function setUrl($url)
@@ -145,7 +149,11 @@ class Reader
         $json = Nette\Utils\Json::decode($data);
 
         if (!isset($json->items[0]->snippet) || !isset($json->items[0]->contentDetails) || !isset($json->items[0]->status) || !isset($json->items[0]->statistics)) {
-            throw new \RuntimeException("Empty YouTube response, probably wrong '{$videoId}' video id.");
+            if ($exception) {
+                throw new \RuntimeException("Empty YouTube response, probably wrong '{$videoId}' video id.");
+            } else {
+                $this->videos[$videoId] = new Video;
+            }
         }
 
         $snippet = $json->items[0]->snippet;
