@@ -149,11 +149,7 @@ class Reader
         $json = Nette\Utils\Json::decode($data);
 
         if (!isset($json->items[0]->snippet) || !isset($json->items[0]->contentDetails) || !isset($json->items[0]->status) || !isset($json->items[0]->statistics)) {
-            if ($exception) {
-                throw new \RuntimeException("Empty YouTube response, probably wrong '{$videoId}' video id.");
-            } else {
-                $this->videos[$videoId] = new Video;
-            }
+            throw new \RuntimeException("Empty YouTube response, probably wrong '{$videoId}' video id.");
         }
 
         $snippet = $json->items[0]->snippet;
