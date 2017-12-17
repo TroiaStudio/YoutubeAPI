@@ -10,6 +10,7 @@
 - url (video url - string)
 - embed (video embed url - string)
 - thumbs (video thumbnails - array)
+- duration (video duration in ISO 8601 - string )
 
 ### Thumbnail (thumbs)
 - default (object)
