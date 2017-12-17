@@ -53,6 +53,11 @@ class Video
         'maxres' => null
     ];
 
+    /**
+     * @var string ISO 8601
+     */
+    public $duration;
+
     public function __construct()
     {
         foreach ($this->thumbs as $index => $thumb) {

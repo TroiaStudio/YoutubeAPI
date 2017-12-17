@@ -10,6 +10,7 @@
 - url (url adresa videa - string)
 - embed (embed adresa videa - string)
 - thumbs (náhledové obrázky videa - array)
+- duration (délka videa formát ISO 8601 - string )
 
 ### Náhledové obrázky (thumbs)
 - default (object)
