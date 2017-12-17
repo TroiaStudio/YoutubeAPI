@@ -164,6 +164,7 @@ class Reader
         $video->url = 'https://www.youtube.com/watch?v=' . $videoId;
         $video->embed = 'https://www.youtube.com/embed/' . $videoId;
         $video->views = $statistics->viewCount;
+        $video->duration = $details->duration;
 
 
         $video->published = new Nette\Utils\DateTime($snippet->publishedAt);
