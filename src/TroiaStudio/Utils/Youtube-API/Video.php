@@ -58,10 +58,22 @@ class Video
      */
     public $duration;
 
+	/**
+	 * @var array
+	 */
+    public $tags;
+
     public function __construct()
     {
         foreach ($this->thumbs as $index => $thumb) {
             $this->thumbs[$index] = new Thumbnail;
         }
     }
+
+
+    public function hasTag(string $tag): bool
+	{
+		return array_search($tag, $this->tags, true) !== false;
+	}
+
 }

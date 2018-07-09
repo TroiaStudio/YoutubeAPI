@@ -43,13 +43,13 @@ class Reader
      */
     private $lastVideo;
 
-    /** @var Client */
+    /**
+	 * @var Client
+	 */
     private $httpClient;
 
-    /** @var bool */
-    private $exception;
 
-    public function __construct($apiKey = null, $httpClient = null, $exception = true)
+    public function __construct($apiKey = null, $httpClient = null)
     {
         if ($apiKey !== null) {
             $this->apiKey = $apiKey;
@@ -61,7 +61,6 @@ class Reader
             ]);
         }
         $this->httpClient = $httpClient;
-        $this->exception = $exception;
     }
 
     public function setUrl($url)
@@ -131,6 +130,7 @@ class Reader
         return $this->videos[$id];
     }
 
+
     private function getData($videoId)
     {
         $url = sprintf($this->link, $this->apiKey, $videoId);
@@ -143,6 +143,7 @@ class Reader
         }
         return $response->getBody()->getContents();
     }
+
 
     private function createVideo($data, $videoId)
     {

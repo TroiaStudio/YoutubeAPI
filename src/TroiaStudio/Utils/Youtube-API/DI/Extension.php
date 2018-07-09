@@ -8,8 +8,10 @@
 
 namespace TroiaStudio\YoutubeAPI\DI;
 
-use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
+use TroiaStudio\YoutubeAPI\Loader;
+use TroiaStudio\YoutubeAPI\Reader;
+
 
 class Extension extends CompilerExtension
 {
@@ -18,15 +20,18 @@ class Extension extends CompilerExtension
         $builder = $this->getContainerBuilder();
         $config = $this->getConfig([
             'apiKey' => null,
-            'httpClient' => null,
-            'exception' => true
+            'httpClient' => null
         ]);
 
+		$builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
+			->setType(Loader::class, [
+				'apiKey' => $config['apiKey']
+			]);
+
         $builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
-            ->setClass('TroiaStudio\YoutubeAPI\Reader', [
+            ->setType(Reader::class, [
                 'apiKey' => $config['apiKey'],
-                'httpClient' => $config['httpClient'],
-                'exception' => $config['exception']
+                'httpClient' => $config['httpClient']
             ]);
     }
 }

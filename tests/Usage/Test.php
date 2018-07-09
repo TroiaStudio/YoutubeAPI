@@ -3,8 +3,18 @@
 $container = require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/../../src/TroiaStudio/Utils/Youtube-API/Reader.php';
 
-$key = getenv('YT_TOKEN');
+\Tracy\Debugger::$maxDepth = 6;
 
-$reader = new TroiaStudio\YoutubeAPI\Reader($key);
+$key = getenv('YOUTUBE_TOKEN');
 
-$video = $reader->getVideo('https://youtu.be/HxfhTDu72VI');*/
+$request = new \TroiaStudio\YoutubeAPI\Request($key);
+$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 50);
+
+$video = $loader->video('pOiQOOrj-fY');
+dump($video);
+
+$playList = $loader->playList('PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo');
+
+dump($playList);
+dump($playList->searchByTag('overwatch'));
+*/
