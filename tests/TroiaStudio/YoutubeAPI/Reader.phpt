@@ -6,10 +6,11 @@ require_once __DIR__ . '/../bootstrap.php';
 $config = parse_ini_file(__DIR__ . '/../../php.ini');
 $apiKey = $config['YT_TOKEN'];
 
-$reader = new TroiaStudio\YoutubeAPI\Reader($apiKey);
-$video = $reader->getVideo('https://youtu.be/zqTyJxGPg-Y');
+$request = new \TroiaStudio\YoutubeAPI\Requests\Request($apiKey);
+$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 50);
+$video = $loader->video('zqTyJxGPg-Y');
 
-Assert::true($video instanceof TroiaStudio\YoutubeAPI\Video);
+Assert::true($video instanceof \TroiaStudio\YoutubeAPI\Model\Video);
 Assert::same('https://www.youtube.com/watch?v=zqTyJxGPg-Y', $video->url);
 Assert::same('https://www.youtube.com/embed/zqTyJxGPg-Y', $video->embed);
 Assert::same('PT25S', $video->duration);

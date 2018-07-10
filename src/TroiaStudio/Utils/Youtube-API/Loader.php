@@ -10,16 +10,19 @@ namespace TroiaStudio\YoutubeAPI;
 
 
 use Nette\Utils\DateTime;
+use Nette\Utils\JsonException;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
+use TroiaStudio\YoutubeAPI\Model\Video;
+use TroiaStudio\YoutubeAPI\Parsers\VideoId;
+use TroiaStudio\YoutubeAPI\Requests\PlayListRequest;
+use TroiaStudio\YoutubeAPI\Requests\Request;
 
 
 class Loader
 {
 
 	const LINK = 'https://www.googleapis.com/youtube/v3',
-		  LINK_VIDEO = self::LINK . '/videos?id=%s&part=snippet,contentDetails,statistics,status&key=%s',
-		  LINK_PLAYLIST_ITEMS = self::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status&key=%s',
-		  LINK_PLAYLIST_ITEMS_PAGE = self::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status&pageToken=%s&key=%s';
+		  LINK_VIDEO = self::LINK . '/videos?id=%s&part=snippet,contentDetails,statistics,status&key=%s';
 
 	/**
 	 * @var Request
@@ -32,7 +35,7 @@ class Loader
 	private $maxResults;
 
 	/**
-	 * @var \TroiaStudio\YoutubeAPI\PlayList\Request[]
+	 * @var PlayListRequest[]
 	 */
 	private $playListRequests = [];
 
@@ -44,19 +47,26 @@ class Loader
 	}
 
 
-	public function video($id)
+	/**
+	 * @param $id
+	 *
+	 * @return Video
+	 * @throws \Nette\Utils\JsonException
+	 * @throws \RuntimeException
+	 */
+	public function video($id): Video
 	{
+		$id = VideoId::parse($id);
 		$request = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
-		$snippet = $request->items[0]->snippet;
-		$details = $request->items[0]->contentDetails;
-		$statistics = $request->items[0]->statistics;
-		$thumbFormats = [
-			'default',
-			'medium',
-			'high',
-			'standard',
-			'maxres'
-		];
+		$items = $request->items[0];
+
+		if (!isset($items->snippet, $items->contentDetails, $items->status, $items->statistics)) {
+			throw new \RuntimeException("Empty YouTube response, probably wrong '{$id}' video id.");
+		}
+
+		$snippet = $items->snippet;
+		$details = $items->contentDetails;
+		$statistics = $items->statistics;
 
 		$video = new Video();
 		$video->id = $id;
@@ -69,7 +79,7 @@ class Loader
 		$video->published = new DateTime($snippet->publishedAt);
 		$video->tags = property_exists($snippet, 'tags') ? $snippet->tags : [];
 
-		foreach ($thumbFormats as $thumb) {
+		foreach (['default','medium','high','standard','maxres'] as $thumb) {
 			if (isset($snippet->thumbnails->$thumb)) {
 				$video->thumbs[$thumb] = $snippet->thumbnails->$thumb;
 			}
@@ -78,9 +88,16 @@ class Loader
 	}
 
 
+	/**
+	 * @param $id
+	 *
+	 * @return PlayList
+	 * @throws \Nette\Utils\JsonException
+	 * @throws \RuntimeException
+	 */
 	public function playList($id): PlayList
 	{
-		$this->playListRequests[$id] = new \TroiaStudio\YoutubeAPI\PlayList\Request($id, $this->maxResults, $this->request);
+		$this->playListRequests[$id] = new PlayListRequest($id, $this->maxResults, $this->request);
 		$request = $this->playListRequests[$id]->load();
 
 		$playList = new PlayList($id, $request);
@@ -94,6 +111,12 @@ class Loader
 	}
 
 
+	/**
+	 * @param PlayList $playList
+	 *
+	 * @throws JsonException
+	 * @throws \RuntimeException
+	 */
 	private function loadVideoPlayList(PlayList $playList)
 	{
 		foreach ($this->playListRequests[$playList->id]->load()->items as $item) {
@@ -102,6 +125,13 @@ class Loader
 	}
 
 
+	/**
+	 * @param PlayList $playList
+	 * @param string   $nextToken
+	 *
+	 * @throws JsonException
+	 * @throws \RuntimeException
+	 */
 	private function loadVideoPlayListNextPage(PlayList $playList, string $nextToken)
 	{
 		$request = $this->playListRequests[$playList->id]->loadPage($nextToken);
@@ -115,4 +145,5 @@ class Loader
 			$this->loadVideoPlayListNextPage($playList, $nextPageToken);
 		}
 	}
+
 }

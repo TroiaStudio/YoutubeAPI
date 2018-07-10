@@ -6,13 +6,13 @@
  * Time: 16:16
  */
 
-namespace TroiaStudio\YoutubeAPI\PlayList;
+namespace TroiaStudio\YoutubeAPI\Requests;
 
 
 use TroiaStudio\YoutubeAPI\Loader;
 
 
-class Request
+class PlayListRequest
 {
 
 	const LINK_PLAYLIST_ITEMS = Loader::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status,snippet&key=%s',
@@ -31,12 +31,12 @@ class Request
 	private $url;
 
 	/**
-	 * @var \TroiaStudio\YoutubeAPI\Request
+	 * @var \TroiaStudio\YoutubeAPI\Requests\Request
 	 */
 	private $request;
 
 
-	public function __construct($id, int $maxResults, \TroiaStudio\YoutubeAPI\Request $request)
+	public function __construct($id, int $maxResults, \TroiaStudio\YoutubeAPI\Requests\Request $request)
 	{
 		$this->id = $id;
 		$this->maxResults = $maxResults;

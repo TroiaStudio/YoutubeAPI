@@ -9,9 +9,6 @@
 namespace TroiaStudio\YoutubeAPI\Model;
 
 
-use TroiaStudio\YoutubeAPI\Video;
-
-
 class PlayList
 {
 
@@ -73,6 +70,34 @@ class PlayList
 		foreach ($this->items as $id => $item) {
 			if ($item->hasTag($tag)) {
 				$list[$id] = $item;
+			}
+		}
+		return $list;
+	}
+
+
+	public function searchByTags(array $tags): array
+	{
+		$list = [];
+
+		foreach ($tags as $tag) {
+			$list = array_merge($list, $this->searchByTag($tag));
+		}
+
+		return $list;
+	}
+
+
+	public function searchByTagsStrict(array $items, array $tags): array
+	{
+		/** @var Video[] $list */
+		$list = $items;
+
+		foreach ($list as $id => $item) {
+			foreach ($tags as $tag) {
+				if (!$item->hasTag($tag)) {
+					unset($list[$id]);
+				}
 			}
 		}
 		return $list;

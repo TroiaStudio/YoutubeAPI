@@ -6,7 +6,7 @@
  * Time: 13:47
  */
 
-namespace TroiaStudio\YoutubeAPI;
+namespace TroiaStudio\YoutubeAPI\Requests;
 
 
 use Composer\CaBundle\CaBundle;
