@@ -11,6 +11,7 @@ namespace TroiaStudio\YoutubeAPI;
 
 use Nette\Utils\DateTime;
 use Nette\Utils\JsonException;
+use TroiaStudio\YoutubeAPI\Factories\VideoFactory;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
 use TroiaStudio\YoutubeAPI\Parsers\VideoId;
@@ -58,33 +59,7 @@ class Loader
 	{
 		$id = VideoId::parse($id);
 		$request = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
-		$items = $request->items[0];
-
-		if (!isset($items->snippet, $items->contentDetails, $items->status, $items->statistics)) {
-			throw new \RuntimeException("Empty YouTube response, probably wrong '{$id}' video id.");
-		}
-
-		$snippet = $items->snippet;
-		$details = $items->contentDetails;
-		$statistics = $items->statistics;
-
-		$video = new Video();
-		$video->id = $id;
-		$video->title = $snippet->title;
-		$video->description = $snippet->description;
-		$video->url = 'https://www.youtube.com/watch?v=' . $id;
-		$video->embed = 'https://www.youtube.com/embed/' . $id;
-		$video->views = (int) $statistics->viewCount;
-		$video->duration = $details->duration;
-		$video->published = new DateTime($snippet->publishedAt);
-		$video->tags = property_exists($snippet, 'tags') ? $snippet->tags : [];
-
-		foreach (['default','medium','high','standard','maxres'] as $thumb) {
-			if (isset($snippet->thumbnails->$thumb)) {
-				$video->thumbs[$thumb] = $snippet->thumbnails->$thumb;
-			}
-		}
-		return $video;
+		return VideoFactory::create($id, $request);
 	}
 
 
@@ -107,6 +82,7 @@ class Loader
 		if ($nextPageToken !== null) {
 			$this->loadVideoPlayListNextPage($playList, $nextPageToken);
 		}
+
 		return $playList;
 	}
 
