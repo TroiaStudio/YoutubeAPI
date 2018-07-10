@@ -23,7 +23,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "nette/http": "^2.4",
         "composer/ca-bundle": "^1.0",
-        "symfony/yaml": "^4.1"
+        "symfony/yaml": "^3.4.12|^4.1"
     },
     "require-dev": {
       "nette/tester": "^1.7",
