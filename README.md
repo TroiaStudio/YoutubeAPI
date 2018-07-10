@@ -10,6 +10,15 @@
 - php >= 5.6
 - php extension curl
 
+
+## Versions
+
+| State  | Version  | Branch | PHP     | Tests |  |
+|--------|----------|--------|---------|-------|--|
+| dev    | `^2.0.0` | `v2.x`  | `>=7.0` | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
+| stable | `^1.0.8` | `v1.x`  | `>=5.6` | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
+
+
 Package Installation
 --------------------
 The best way to install Troia Studio / Youtube API is using [Composer](http://getcomposer.org/):
@@ -24,9 +33,10 @@ or manual edit composer.json in your project
 
 ```json
 "require": {
-    "troiastudio/youtube-api": ">= 1.0.4"
+    "troiastudio/youtube-api": ">= 1.0.8"
 }
 ```
+
 
 Documentation
 =============
