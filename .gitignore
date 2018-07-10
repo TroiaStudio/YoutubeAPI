@@ -2,3 +2,5 @@ vendor/
 .idea/
 composer.lock
 tests/php.ini
+tests/TroiaStudio/YoutubeAPI/output
+tests/TroiaStudio/YoutubeAPI/temp
