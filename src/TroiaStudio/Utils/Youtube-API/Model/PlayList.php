@@ -103,4 +103,23 @@ class PlayList
 		return $list;
 	}
 
+
+	private function getProperties(): array
+	{
+		return get_object_vars($this);
+	}
+
+
+	public function toArray(): array
+	{
+
+		$result = ['playlist' => $this->getProperties()];
+
+		foreach ($this->items as $index => $item) {
+			$result['playlist']['items'][$index] = $this->items[$index]->toArray();
+		}
+
+		return $result;
+	}
+
 }

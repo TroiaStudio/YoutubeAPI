@@ -9,6 +9,8 @@
 namespace TroiaStudio\YoutubeAPI\Factories;
 
 
+use Nette\Utils\DateTime;
+use TroiaStudio\YoutubeAPI\Model\Thumbnail;
 use TroiaStudio\YoutubeAPI\Model\Video;
 
 
@@ -36,10 +38,10 @@ class VideoFactory
 		$video->duration = $details->duration;
 		$video->published = new DateTime($snippet->publishedAt);
 		$video->tags = property_exists($snippet, 'tags') ? $snippet->tags : [];
-
 		foreach (['default','medium','high','standard','maxres'] as $thumb) {
 			if (isset($snippet->thumbnails->$thumb)) {
-				$video->thumbs[$thumb] = $snippet->thumbnails->$thumb;
+				$th = $snippet->thumbnails->$thumb;
+				$video->thumbs[$thumb] = new Thumbnail($th->url, $th->width, $th->height);
 			}
 		}
 		return $video;

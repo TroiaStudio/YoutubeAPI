@@ -45,7 +45,7 @@ class Video
 	public $embed;
 
 	/**
-	 * @var array
+	 * @var Thumbnail[]
 	 */
 	public $thumbs = [
 		'default' => null,
@@ -68,9 +68,6 @@ class Video
 
 	public function __construct()
 	{
-		foreach ($this->thumbs as $index => $thumb) {
-			$this->thumbs[$index] = new Thumbnail;
-		}
 	}
 
 
@@ -79,4 +76,27 @@ class Video
 		return array_search($tag, $this->tags, true) !== false;
 	}
 
+
+	private function getProperties(): array
+	{
+		return get_object_vars($this);
+	}
+
+
+	public function toArray(): array
+	{
+		$result = $this->getProperties();
+
+		foreach ($this->thumbs as $index => $item) {
+			$result['thumbs'][$index] = $item->toArray();
+		}
+
+		$result['published'] = (string) $this->published;
+
+		if (empty($result['tags'])) {
+			unset($result['tags']);
+		}
+
+		return $result;
+	}
 }
