@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/troiastudio/youtube-api/license)](https://packagist.org/packages/troiastudio/youtube-api)
 
 ## Requirements
-- php >= 5.6
+- php >= 7.0
 - php extension curl
 
 
