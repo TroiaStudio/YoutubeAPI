@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: galekj01
@@ -8,13 +9,11 @@
 
 namespace TroiaStudio\YoutubeAPI\Requests;
 
-
 use TroiaStudio\YoutubeAPI\Loader;
 
 
 class PlayListRequest
 {
-
 	const LINK_PLAYLIST_ITEMS = Loader::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status,snippet&key=%s',
 		  LINK_PLAYLIST_ITEMS_PAGE = Loader::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status,snippet&pageToken=%s&key=%s';
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: galekj01
@@ -8,8 +9,6 @@
 
 namespace TroiaStudio\YoutubeAPI;
 
-
-use Nette\Utils\DateTime;
 use Nette\Utils\JsonException;
 use TroiaStudio\YoutubeAPI\Factories\VideoFactory;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
@@ -21,7 +20,6 @@ use TroiaStudio\YoutubeAPI\Requests\Request;
 
 class Loader
 {
-
 	const LINK = 'https://www.googleapis.com/youtube/v3',
 		  LINK_VIDEO = self::LINK . '/videos?id=%s&part=snippet,contentDetails,statistics,status&key=%s';
 
@@ -121,5 +119,4 @@ class Loader
 			$this->loadVideoPlayListNextPage($playList, $nextPageToken);
 		}
 	}
-
 }

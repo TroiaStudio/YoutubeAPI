@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Galek
@@ -25,12 +26,12 @@ class Extension extends CompilerExtension
 
 		$builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
 			->setType(Request::class, [
-				'apiKey' => $config['apiKey']
+				'apiKey' => $config['apiKey'],
 			]);
 
 		$builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
 			->setType(Loader::class, [
-				'maxResults' => $config['maxResults']
+				'maxResults' => $config['maxResults'],
 			]);
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: galekj01
@@ -7,7 +8,6 @@
  */
 
 namespace TroiaStudio\YoutubeAPI\Requests;
-
 
 use Composer\CaBundle\CaBundle;
 use GuzzleHttp\Client;
@@ -56,5 +56,4 @@ class Request
 
 		return Json::decode($response->getBody()->getContents());
 	}
-
 }

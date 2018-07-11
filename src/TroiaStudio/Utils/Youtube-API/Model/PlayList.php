@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: galekj01
@@ -112,7 +113,6 @@ class PlayList
 
 	public function toArray(): array
 	{
-
 		$result = ['playlist' => $this->getProperties()];
 
 		foreach ($this->items as $index => $item) {
@@ -121,5 +121,4 @@ class PlayList
 
 		return $result;
 	}
-
 }

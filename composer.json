@@ -28,5 +28,9 @@
     "require-dev": {
       "nette/tester": "^1.7",
       "tracy/tracy": "@dev"
+    },
+    "scripts": {
+        "cs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config tests/temp/nette-coding-standard/coding-standard-php70.neon",
+        "fs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config tests/temp/nette-coding-standard/coding-standard-php70.neon --fix"
     }
 }

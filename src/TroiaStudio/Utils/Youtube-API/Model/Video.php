@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace TroiaStudio\YoutubeAPI\Model;
 
 use Nette;
@@ -30,7 +32,7 @@ class Video
 	public $published;
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	public $views;
 
@@ -52,7 +54,7 @@ class Video
 		'medium' => null,
 		'high' => null,
 		'standard' => null,
-		'maxres' => null
+		'maxres' => null,
 	];
 
 	/**

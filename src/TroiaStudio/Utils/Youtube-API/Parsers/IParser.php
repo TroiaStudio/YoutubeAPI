@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: galekj01
@@ -11,5 +12,4 @@ namespace TroiaStudio\YoutubeAPI\Parsers;
 
 interface IParser
 {
-
 }
