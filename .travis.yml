@@ -17,15 +17,15 @@ before_install:
 
 matrix:
   allow_failures:
-    - php: 7.2
+    - php: 7.0
     - php: 7.3
 
 install:
-    - composer create-project nette/coding-standard tests/temp/nette-coding-standard
+    - composer create-project nette/coding-standard temp/nette-coding-standard
 
 script:
   - vendor/bin/tester -p php-cgi tests
-  - temp/nette-coding-standard/ecs check src tests --config tests/temp/nette-coding-standard/coding-standard-php70.neon
+  - temp/nette-coding-standard/ecs check src tests --config temp/nette-coding-standard/coding-standard-php70.neon
 
 after_failure:
   - for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done

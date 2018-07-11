@@ -17,7 +17,7 @@
       }
     },
     "require": {
-        "php": ">= 7.0",
+        "php": ">= 7.1",
         "nette/di": ">= 2.4",
         "nette/utils": ">= 2.4",
         "guzzlehttp/guzzle": "^6.2",
@@ -30,7 +30,7 @@
       "tracy/tracy": "@dev"
     },
     "scripts": {
-        "cs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config tests/temp/nette-coding-standard/coding-standard-php70.neon",
-        "fs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config tests/temp/nette-coding-standard/coding-standard-php70.neon --fix"
+        "cs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config temp/nette-coding-standard/coding-standard-php70.neon",
+        "fs": "php tests/temp/nette-coding-standard/ecs check src/ tests/ --config temp/nette-coding-standard/coding-standard-php70.neon --fix"
     }
 }

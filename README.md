@@ -15,7 +15,7 @@
 
 | State  | Version  | Branch | PHP     | Tests |  |
 |--------|----------|--------|---------|-------|--|
-| dev    | `^2.0.0` | `v2.x`  | `>=7.0` | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
+| dev    | `^2.0.0` | `v2.x`  | `>=7.1` | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
 | stable | `^1.0.8` | `v1.x`  | `>=5.6` | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
 
 

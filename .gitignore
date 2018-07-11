@@ -3,4 +3,4 @@ vendor/
 composer.lock
 tests/php.ini
 tests/TroiaStudio/YoutubeAPI/output
-tests/temp/nette-coding-standard
+temp/nette-coding-standard
