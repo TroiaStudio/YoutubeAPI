@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 //declare(strict_types=1);
 //$container = require __DIR__ . '/../../vendor/autoload.php';
 //

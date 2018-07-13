@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/troiastudio/youtube-api/license)](https://packagist.org/packages/troiastudio/youtube-api)
 
 ## Requirements
-- php >= 7.0
+- php >= 7.1
 - php extension curl
 
 
@@ -15,8 +15,9 @@
 
 | State  | Version  | Branch | PHP     | Docs | Tests |  |
 |--------|----------|--------|---------|------|-------|--|
-| dev    | `^2.0.0` | `v2.x` | `>=7.1` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v2/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v2/index.md) | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
-| stable | `^1.0.8` | `v1.x` | `>=5.6` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v1/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v1/index.md) | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
+| dev    | `^2.x`   | `master` | `>=7.1` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v2/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v2/index.md) | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=master)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
+| stable | `^2.0.x` | `v2.x` | `>=7.1` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/v2.x/docs/en/v2/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/v2.x/docs/cs/v2/index.md) | [![2.0.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
+| stable | `^1.0.8` | `v1.x` | `>=5.6` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/v1.x/docs/en/v1/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/v1.x/docs/cs/v1/index.md) | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
 
 
 Package Installation
