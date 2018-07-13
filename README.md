@@ -34,6 +34,13 @@ or manual edit composer.json in your project
 
 ```json
 "require": {
+    "troiastudio/youtube-api": "^2.0.0"
+}
+```
+
+#### version v1.x
+```json
+"require": {
     "troiastudio/youtube-api": ">= 1.0.8"
 }
 ```
