@@ -16,7 +16,7 @@ $playList = $loader->playList('PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo');
 unset($playList->etag);
 
 foreach ($playList->items as $index => $video) {
-    unset($video->views);
+	unset($video->views);
 }
 
 $jsonExporter = new \TroiaStudio\YoutubeAPI\Export\JsonExport();

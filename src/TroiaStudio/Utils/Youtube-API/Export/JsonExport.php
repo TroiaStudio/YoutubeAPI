@@ -16,22 +16,20 @@ use TroiaStudio\YoutubeAPI\Model\Video;
 
 class JsonExport implements IExport
 {
-
-    public function video(Video $video): string
-    {
-        return json_encode($video->toArray());
-    }
-
-
-    public function playList(PlayList $playList): string
-    {
-        return json_encode($playList->toArray());
-    }
+	public function video(Video $video): string
+	{
+		return json_encode($video->toArray());
+	}
 
 
-    public static function save(string $path, string $filename, string $content): void
-    {
-        file_put_contents($path . '/' . $filename, $content);
-    }
+	public function playList(PlayList $playList): string
+	{
+		return json_encode($playList->toArray());
+	}
 
+
+	public static function save(string $path, string $filename, string $content): void
+	{
+		file_put_contents($path . '/' . $filename, $content);
+	}
 }

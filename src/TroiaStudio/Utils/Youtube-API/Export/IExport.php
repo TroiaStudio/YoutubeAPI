@@ -16,9 +16,7 @@ use TroiaStudio\YoutubeAPI\Model\Video;
 
 interface IExport
 {
+	public function video(Video $video): string;
 
-    public function video(Video $video): string;
-
-    public function playList(PlayList $playList): string;
-
+	public function playList(PlayList $playList): string;
 }
