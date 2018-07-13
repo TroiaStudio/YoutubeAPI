@@ -11,20 +11,21 @@ $ composer require troiastudio/youtube-api
 ### Basic
 ```php
 $apiKey = 'MySuperSecretYoutubeApiKey';
-$youtube = new \TroiaStudio\YoutubeAPI\Reader($apiKey);
+$youtubeRequest = new \TroiaStudio\YoutubeAPI\Requests\Request($key);
+$youtube = new \TroiaStudio\YoutubeAPI\Loader($request, 50);
 ```
 
 #### Use
 
 ##### Link
 ```php
-$video = $youtube->getVideo('https://www.youtube.com/watch?v=qR9Cbu4HAHQ');
-$video2 = $youtube->getVideo('https://www.youtu.be/watch?v=qR9Cbu4HAHQ');
+$video = $youtube->video('https://www.youtube.com/watch?v=qR9Cbu4HAHQ');
+$video2 = $youtube->video('https://www.youtu.be/watch?v=qR9Cbu4HAHQ');
 ```
 
 ##### Id
 ```php
-$video = $youtube->getVideo('qR9Cbu4HAHQ');
+$video = $youtube->video('qR9Cbu4HAHQ');
 ```
 
 ### Nette
@@ -40,7 +41,7 @@ youtubeAPI:
 
 Presenter
 ```php
-/** @var \TroiaStudio\YoutubeAPI\Reader @inject */
+/** @var \TroiaStudio\YoutubeAPI\Loader @inject */
 public $youtube;
 ```
 
@@ -48,17 +49,17 @@ public $youtube;
 
 ##### Link
 ```php
-$video = $this->youtube->getVideo('https://www.youtube.com/watch?v=qR9Cbu4HAHQ');
-$video2 = $this->youtube->getVideo('https://www.youtu.be/watch?v=qR9Cbu4HAHQ');
+$video = $this->youtube->video('https://www.youtube.com/watch?v=qR9Cbu4HAHQ');
+$video2 = $this->youtube->video('https://www.youtu.be/watch?v=qR9Cbu4HAHQ');
 ```
 
 ##### Id
 ```php
-$video = $this->youtube->getVideo('qR9Cbu4HAHQ');
+$video = $this->youtube->video('qR9Cbu4HAHQ');
 ```
 
 ### Work with video
-Every properties you find in [Video documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/video.md)
+Every properties you find in [Video documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v2/video.md)
 
 **Latte**
 ```latte
@@ -77,25 +78,4 @@ Every properties you find in [Video documentation](https://github.com/TroiaStudi
         <img src="{$video->thumbs['high']->url}" width="{$video->thumbs['high']->width}" height="{$video->thumbs['high']->height}">
     </div>
  </div>
-```
-
-### Exception
-you can turn of throw exception and get empty video object
-
-#### Basic
-```php
-$apiKey = 'MySuperSecretYoutubeApiKey';
-$youtube = new \TroiaStudio\YoutubeAPI\Reader($apiKey, null, false);
-```
-
-#### Nette
-
-config.neon
-```neon
-extensions: 
-    youtubeAPI: TroiaStudio\YoutubeAPI\DI\Extension
-
-youtubeAPI:
-    apiKey: 'MySuperSecretYoutubeApiKey'
-    exception: false
 ```
