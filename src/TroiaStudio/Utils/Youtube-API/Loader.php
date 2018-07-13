@@ -20,7 +20,7 @@ use TroiaStudio\YoutubeAPI\Requests\Request;
 
 class Loader
 {
-	const LINK = 'https://www.googleapis.com/youtube/v3',
+	public const LINK = 'https://www.googleapis.com/youtube/v3',
 		  LINK_VIDEO = self::LINK . '/videos?id=%s&part=snippet,contentDetails,statistics,status&key=%s';
 
 	/**

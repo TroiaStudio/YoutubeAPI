@@ -16,7 +16,6 @@ use TroiaStudio\YoutubeAPI\Model\Video;
 
 class YamlExport implements IExport
 {
-
 	public function video(Video $video): string
 	{
 		return Yaml::dump($video->toArray(), 10);
