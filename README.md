@@ -13,10 +13,10 @@
 
 ## Versions
 
-| State  | Version  | Branch | PHP     | Tests |  |
-|--------|----------|--------|---------|-------|--|
-| dev    | `^2.0.0` | `v2.x`  | `>=7.1` | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
-| stable | `^1.0.8` | `v1.x`  | `>=5.6` | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
+| State  | Version  | Branch | PHP     | Docs | Tests |  |
+|--------|----------|--------|---------|------|-------|--|
+| dev    | `^2.0.0` | `v2.x` | `>=7.1` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v2/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v2/index.md) | [![2.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v2.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | `minimum-stability: dev` |
+| stable | `^1.0.8` | `v1.x` | `>=5.6` | [EN](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v1/index.md) / [CZ](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v1/index.md) | [![1.x](https://travis-ci.org/TroiaStudio/YoutubeAPI.svg?branch=v1.x)](https://travis-ci.org/TroiaStudio/YoutubeAPI) | |
 
 
 Package Installation
@@ -41,4 +41,4 @@ or manual edit composer.json in your project
 Documentation
 =============
 
-[English documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/index.md) | [Czech documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/index.md)
+[English documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/en/v2/index.md) | [Czech documentation](https://github.com/TroiaStudio/YoutubeAPI/blob/master/docs/cs/v2/index.md)
