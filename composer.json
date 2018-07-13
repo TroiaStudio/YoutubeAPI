@@ -30,7 +30,7 @@
       "tracy/tracy": "@dev"
     },
     "scripts": {
-        "cs": "php temp/nette-coding-standard/ecs check src/ tests/ --config tests/coding-standard-php70.neon",
-        "fs": "php temp/nette-coding-standard/ecs check src/ tests/ --config tests/coding-standard-php70.neon --fix"
+        "cs": "php temp/nette-coding-standard/ecs check src/ tests/ --config tests/coding-standard-php71.neon",
+        "fs": "php temp/nette-coding-standard/ecs check src/ tests/ --config tests/coding-standard-php71.neon --fix"
     }
 }
