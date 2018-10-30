@@ -90,6 +90,9 @@ class Video
 		$result = $this->getProperties();
 
 		foreach ($this->thumbs as $index => $item) {
+			if ( ! ($item instanceof Thumbnail)) {
+				continue;
+			}
 			$result['thumbs'][$index] = $item->toArray();
 		}
 
