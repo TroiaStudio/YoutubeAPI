@@ -25,12 +25,12 @@ class Extension extends CompilerExtension
 		]);
 
 		$builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
-			->setType(Request::class, [
+			->setClass(Request::class, [
 				'apiKey' => $config['apiKey'],
 			]);
 
 		$builder->addDefinition($this->prefix('troiastudioyoutubeapi'))
-			->setType(Loader::class, [
+			->setClass(Loader::class, [
 				'maxResults' => $config['maxResults'],
 			]);
 	}
