@@ -25,7 +25,7 @@ install:
 
 script:
   - vendor/bin/tester -p php-cgi tests
-  - vendor/bin/phpstan analyse -l 2 ./src/
+  - vendor/bin/phpstan analyse -l 3 ./src/
   - temp/coding-standard/ecs check src tests --config temp/coding-standard/coding-standard-php71.yml
 
 after_failure:
