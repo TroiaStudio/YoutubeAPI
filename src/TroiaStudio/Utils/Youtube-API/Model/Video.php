@@ -27,7 +27,7 @@ class Video
 	public $description;
 
 	/**
-	 * @var datetime
+	 * @var \DateTime
 	 */
 	public $published;
 
