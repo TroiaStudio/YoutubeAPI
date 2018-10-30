@@ -47,7 +47,7 @@ class Video
 	public $embed;
 
 	/**
-	 * @var Thumbnail[]
+	 * @var array<string, Thumbnail|null>
 	 */
 	public $thumbs = [
 		'default' => null,
