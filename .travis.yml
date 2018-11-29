@@ -13,6 +13,7 @@ env:
 
 before_install:
   - echo "extension=php_curl.so" >> tests/php.ini
+  - echo "extension=php_json.so" >> tests/php.ini
   - echo "YT_TOKEN=${YT_TOKEN}" >> tests/php.ini
 
 matrix:
