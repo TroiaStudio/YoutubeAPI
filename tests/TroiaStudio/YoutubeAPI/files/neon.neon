@@ -1,0 +1,253 @@
+playlist:
+	id: PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo
+	kind: youtube#playlistItemListResponse
+	totalResults: 7
+	resultsPerPage: 7
+	items:
+		zqTyJxGPg-Y:
+			id: zqTyJxGPg-Y
+			title: warfacez's highlight   competive 10 18 05 01 15 39 58
+			description: ""
+			published: "2018-05-01T14:02:43+00:00"
+			url: "https://www.youtube.com/watch?v=zqTyJxGPg-Y"
+			embed: https://www.youtube.com/embed/zqTyJxGPg-Y
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/zqTyJxGPg-Y/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/zqTyJxGPg-Y/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/zqTyJxGPg-Y/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/zqTyJxGPg-Y/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/zqTyJxGPg-Y/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+			tags:
+				- overwatch
+
+		fzcXTWtTLVY:
+			id: fzcXTWtTLVY
+			title: "warfacez's highlight Hanzo :D"
+			description: ""
+			published: "2018-06-09T12:27:05+00:00"
+			url: "https://www.youtube.com/watch?v=fzcXTWtTLVY"
+			embed: https://www.youtube.com/embed/fzcXTWtTLVY
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/fzcXTWtTLVY/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/fzcXTWtTLVY/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/fzcXTWtTLVY/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/fzcXTWtTLVY/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/fzcXTWtTLVY/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
+		H_vEV3ShvaE:
+			id: H_vEV3ShvaE
+			title: warfacez's highlight 18 06 09 20 00 14
+			description: ""
+			published: "2018-06-09T20:30:31+00:00"
+			url: "https://www.youtube.com/watch?v=H_vEV3ShvaE"
+			embed: https://www.youtube.com/embed/H_vEV3ShvaE
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/H_vEV3ShvaE/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/H_vEV3ShvaE/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/H_vEV3ShvaE/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/H_vEV3ShvaE/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/H_vEV3ShvaE/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
+		2Eyf4vkKutw:
+			id: 2Eyf4vkKutw
+			title: warfacez's highlight 18 06 09 19 52 02
+			description: ""
+			published: "2018-06-09T20:30:29+00:00"
+			url: "https://www.youtube.com/watch?v=2Eyf4vkKutw"
+			embed: https://www.youtube.com/embed/2Eyf4vkKutw
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/2Eyf4vkKutw/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/2Eyf4vkKutw/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/2Eyf4vkKutw/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/2Eyf4vkKutw/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/2Eyf4vkKutw/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
+		ftIWrA6DigQ:
+			id: ftIWrA6DigQ
+			title: warfacez's highlight 18 06 09 19 46 25
+			description: ""
+			published: "2018-06-09T20:30:27+00:00"
+			url: "https://www.youtube.com/watch?v=ftIWrA6DigQ"
+			embed: https://www.youtube.com/embed/ftIWrA6DigQ
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/ftIWrA6DigQ/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/ftIWrA6DigQ/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/ftIWrA6DigQ/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/ftIWrA6DigQ/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/ftIWrA6DigQ/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
+		MV75_aaNvdU:
+			id: MV75_aaNvdU
+			title: warfacez's highlight 18 06 09 19 50 00
+			description: ""
+			published: "2018-06-09T20:30:27+00:00"
+			url: "https://www.youtube.com/watch?v=MV75_aaNvdU"
+			embed: https://www.youtube.com/embed/MV75_aaNvdU
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/MV75_aaNvdU/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/MV75_aaNvdU/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/MV75_aaNvdU/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/MV75_aaNvdU/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/MV75_aaNvdU/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
+		r5iT9g4Lg_4:
+			id: r5iT9g4Lg_4
+			title: warfacez's highlight 18 06 09 19 43 59
+			description: ""
+			published: "2018-06-09T20:30:27+00:00"
+			url: "https://www.youtube.com/watch?v=r5iT9g4Lg_4"
+			embed: https://www.youtube.com/embed/r5iT9g4Lg_4
+			thumbs:
+				default:
+					url: https://i.ytimg.com/vi/r5iT9g4Lg_4/default.jpg
+					width: 120
+					height: 90
+
+				medium:
+					url: https://i.ytimg.com/vi/r5iT9g4Lg_4/mqdefault.jpg
+					width: 320
+					height: 180
+
+				high:
+					url: https://i.ytimg.com/vi/r5iT9g4Lg_4/hqdefault.jpg
+					width: 480
+					height: 360
+
+				standard:
+					url: https://i.ytimg.com/vi/r5iT9g4Lg_4/sddefault.jpg
+					width: 640
+					height: 480
+
+				maxres:
+					url: https://i.ytimg.com/vi/r5iT9g4Lg_4/maxresdefault.jpg
+					width: 1280
+					height: 720
+
+			duration: PT25S
+
