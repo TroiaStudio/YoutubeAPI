@@ -27,7 +27,7 @@ class Video
 	public $description;
 
 	/**
-	 * @var \DateTime
+	 * @var DateTime
 	 */
 	public $published;
 
@@ -90,7 +90,7 @@ class Video
 		$result = $this->getProperties();
 
 		foreach ($this->thumbs as $index => $item) {
-			if ( ! ($item instanceof Thumbnail)) {
+			if (!($item instanceof Thumbnail)) {
 				continue;
 			}
 			$result['thumbs'][$index] = $item->toArray();
