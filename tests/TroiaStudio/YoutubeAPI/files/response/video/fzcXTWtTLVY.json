@@ -1,0 +1,71 @@
+{
+	"kind": "youtube#videoListResponse",
+	"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/7Q9zg1VcIA_MoUISDtV-d3uhA6o\"",
+	"pageInfo": {
+		"totalResults": 1,
+		"resultsPerPage": 1
+	},
+	"items": [
+		{
+			"kind": "youtube#video",
+			"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/sfJWCdjxjZE_dzFRSgc4Pv3ujj8\"",
+			"id": "fzcXTWtTLVY",
+			"snippet": {
+				"publishedAt": "2018-06-09T12:27:05.000Z",
+				"channelId": "UCpZaOc0uEk9gWh-TS7B3A5g",
+				"title": "warfacez's highlight Hanzo :D",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/fzcXTWtTLVY/default.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/fzcXTWtTLVY/mqdefault.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/fzcXTWtTLVY/hqdefault.jpg",
+						"width": 480,
+						"height": 360
+					},
+					"standard": {
+						"url": "https://i.ytimg.com/vi/fzcXTWtTLVY/sddefault.jpg",
+						"width": 640,
+						"height": 480
+					},
+					"maxres": {
+						"url": "https://i.ytimg.com/vi/fzcXTWtTLVY/maxresdefault.jpg",
+						"width": 1280,
+						"height": 720
+					}
+				},
+				"channelTitle": "Jan Galek",
+				"categoryId": "20",
+				"liveBroadcastContent": "none",
+				"localized": {
+					"title": "warfacez's highlight Hanzo :D",
+					"description": ""
+				}
+			},
+			"contentDetails": {
+				"duration": "PT25S",
+				"dimension": "2d",
+				"definition": "hd",
+				"caption": "false",
+				"licensedContent": false,
+				"projection": "rectangular",
+				"hasCustomThumbnail": false
+			},
+			"statistics": {
+				"viewCount": "11",
+				"likeCount": "4",
+				"dislikeCount": "0",
+				"favoriteCount": "0",
+				"commentCount": "0"
+			}
+		}
+	]
+}

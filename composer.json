@@ -16,6 +16,11 @@
         "TroiaStudio\\YoutubeAPI\\DI\\": "src/TroiaStudio/Utils/Youtube-API/DI"
       }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TroiaStudioTests\\YoutubeAPI\\": "tests/TroiaStudio/YoutubeAPI"
+        }
+    },
     "require": {
         "php": ">= 7.1",
         "ext-json": "*",
@@ -27,9 +32,10 @@
         "symfony/yaml": "^3.4.12|^4.1"
     },
     "require-dev": {
-      "nette/tester": "^1.7",
-      "tracy/tracy": "@dev",
-        "phpstan/phpstan": "^0.10.5"
+        "nette/tester": "^1.7",
+        "tracy/tracy": "@dev",
+        "phpstan/phpstan": "^0.10.5",
+        "mockery/mockery": "^1.2"
     },
     "scripts": {
         "cs": "php temp/coding-standard/ecs check src/ tests/ --config temp/coding-standard/coding-standard-php71.yml",

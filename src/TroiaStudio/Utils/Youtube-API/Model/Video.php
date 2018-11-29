@@ -7,7 +7,7 @@ use DateTime;
 use Nette;
 
 
-class Video
+class Video implements IModel
 {
 	use Nette\SmartObject;
 
@@ -73,9 +73,15 @@ class Video
 	}
 
 
+	public function addThumbnail(string $resolutionName, Thumbnail $thumbnail): void
+	{
+		$this->thumbs[$resolutionName] = $thumbnail;
+	}
+
+
 	public function hasTag(string $tag): bool
 	{
-		return array_search($tag, $this->tags, true) !== false;
+		return \in_array($tag, $this->tags, true);
 	}
 
 

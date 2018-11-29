@@ -10,10 +10,15 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI;
 
 use Nette\Utils\JsonException;
+use TroiaStudio\YoutubeAPI\Factories\ChannelFactory;
+use TroiaStudio\YoutubeAPI\Factories\ChannelPlayListFactory;
 use TroiaStudio\YoutubeAPI\Factories\VideoFactory;
+use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
 use TroiaStudio\YoutubeAPI\Parsers\VideoId;
+use TroiaStudio\YoutubeAPI\Requests\ChannelPlayListRequest;
+use TroiaStudio\YoutubeAPI\Requests\ChannelRequest;
 use TroiaStudio\YoutubeAPI\Requests\PlayListRequest;
 use TroiaStudio\YoutubeAPI\Requests\Request;
 
@@ -34,9 +39,24 @@ class Loader
 	private $maxResults;
 
 	/**
+	 * @var
+	 */
+	private $videoRequests = [];
+
+	/**
 	 * @var PlayListRequest[]
 	 */
 	private $playListRequests = [];
+
+	/**
+	 * @var ChannelRequest[]
+	 */
+	private $channelRequests = [];
+
+	/**
+	 * @var ChannelPlayListRequest[]
+	 */
+	private $channelPlayListRequests = [];
 
 
 	public function __construct(Request $request, int $maxResults = 50)
@@ -54,8 +74,11 @@ class Loader
 	public function video(string $id): Video
 	{
 		$id = VideoId::parse($id);
-		$request = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
-		return VideoFactory::create($id, $request);
+		if (!isset($this->videoRequests[$id])) {
+			$this->videoRequests[$id] = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
+		}
+
+		return VideoFactory::create($id, $this->videoRequests[$id]);
 	}
 
 
@@ -82,15 +105,61 @@ class Loader
 
 
 	/**
+	 * @param string $id
+	 *
+	 * @return Channel
+	 * @throws JsonException
+	 */
+	public function channel(string $id): Channel
+	{
+		$this->channelRequests[$id] = new ChannelRequest($id, $this->request);
+		$request = $this->channelRequests[$id]->load();
+
+		$channel = ChannelFactory::create($id, $request);
+		$this->loadChannelPlayLists($channel);
+
+		return $channel;
+	}
+
+
+	/**
+	 * @param Channel $channel
+	 *
+	 * @throws JsonException
+	 */
+	public function loadChannelPlayLists(Channel $channel): void
+	{
+		$id = $channel->id;
+		$this->channelPlayListRequests[$id] = new ChannelPlayListRequest($id, $this->maxResults, $this->request);
+		$request = $this->channelPlayListRequests[$id]->load();
+
+		$ids = ChannelPlayListFactory::get($request);
+
+		foreach ($ids as $index => $playListId) {
+			$playList = $this->playList($playListId);
+			var_dump($playList);
+			$channel->addPlayList($playList);
+		}
+
+		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
+
+		if ($nextPageToken !== null) {
+			$this->loadChannelVideoPlayListNextPage($channel, $nextPageToken);
+		}
+	}
+
+
+	/**
 	 * @param PlayList $playList
 	 *
 	 * @throws JsonException
 	 * @throws \RuntimeException
 	 */
-	private function loadVideoPlayList(PlayList $playList)
+	private function loadVideoPlayList(PlayList $playList): void
 	{
 		foreach ($this->playListRequests[$playList->id]->load()->items as $item) {
-			$playList->addVideo($this->video($item->snippet->resourceId->videoId));
+			$video = $this->video($item->snippet->resourceId->videoId);
+			$playList->addVideo($video);
 		}
 	}
 
@@ -102,17 +171,41 @@ class Loader
 	 * @throws JsonException
 	 * @throws \RuntimeException
 	 */
-	private function loadVideoPlayListNextPage(PlayList $playList, string $nextToken)
+	private function loadVideoPlayListNextPage(PlayList $playList, string $nextToken): void
 	{
 		$request = $this->playListRequests[$playList->id]->loadPage($nextToken);
 		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
 
 		foreach ($request->items as $item) {
-			$playList->addVideo($this->video($item->snippet->resourceId->videoId));
+			$video = $this->video($item->snippet->resourceId->videoId);
+			$playList->addVideo($video);
 		}
 
 		if ($nextPageToken !== null) {
 			$this->loadVideoPlayListNextPage($playList, $nextPageToken);
+		}
+	}
+
+
+	/**
+	 * @param Channel $channel
+	 * @param string  $nextToken
+	 *
+	 * @throws JsonException
+	 */
+	private function loadChannelVideoPlayListNextPage(Channel $channel, string $nextToken): void
+	{
+		$request = $this->channelPlayListRequests[$channel->id]->loadPage($nextToken);
+		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
+
+		$ids = ChannelPlayListFactory::get($request);
+
+		foreach ($ids as $index => $playListId) {
+			$channel->addPlayList($this->playList($playListId));
+		}
+
+		if ($nextPageToken !== null) {
+			$this->loadChannelVideoPlayListNextPage($playList, $nextPageToken);
 		}
 	}
 }

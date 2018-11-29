@@ -10,7 +10,10 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Model;
 
 
-class PlayList implements IModel
+use Nette\Utils\DateTime;
+
+
+class Channel implements IModel
 {
 
 	/**
@@ -29,6 +32,26 @@ class PlayList implements IModel
 	public $etag;
 
 	/**
+	 * @var string
+	 */
+	public $title;
+
+	/**
+	 * @var string
+	 */
+	public $description;
+
+	/**
+	 * @var string
+	 */
+	public $url;
+
+	/**
+	 * @var string
+	 */
+	public $customUrl;
+
+	/**
 	 * @var int
 	 */
 	public $totalResults;
@@ -39,24 +62,64 @@ class PlayList implements IModel
 	public $resultsPerPage;
 
 	/**
-	 * @var Video[]
+	 * @var int
 	 */
-	public $items = [];
+	public $views = 0;
+
+	/**
+	 * @var int
+	 */
+	public $commentCount = 0;
+
+	/**
+	 * @var int
+	 */
+	public $subscriberCount = 0;
+
+	/**
+	 * @var bool
+	 */
+	public $hiddenSubscriberCount = false;
+
+	/**
+	 * @var int
+	 */
+	public $videoCount = 0;
+
+	/**
+	 * @var DateTime
+	 */
+	public $published;
+
+	/**
+	 * @var array<string, Thumbnail|null>
+	 */
+	public $thumbs = [
+		'default' => null,
+		'medium' => null,
+		'high' => null
+	];
+
+	/**
+	 * @var PlayList[]
+	 */
+	public $playLists = [];
 
 
-	public function __construct(string $id, \stdClass $class)
+	public function __construct()
 	{
-		$this->id = $id;
-		$this->kind = $class->kind;
-		$this->etag = $class->etag;
-		$this->totalResults = $class->pageInfo->totalResults;
-		$this->resultsPerPage = $class->pageInfo->resultsPerPage;
+
+	}
+
+	public function addPlayList(PlayList $playList): void
+	{
+		$this->playLists[] = $playList;
 	}
 
 
-	public function addVideo(Video $video): void
+	public function addThumbnail(string $resolutionName, Thumbnail $thumbnail): void
 	{
-		$this->items[$video->id] = $video;
+		$this->thumbs[$resolutionName] = $thumbnail;
 	}
 
 
@@ -68,7 +131,7 @@ class PlayList implements IModel
 	public function searchByTag(string $tag): array
 	{
 		$list = [];
-		foreach ($this->items as $id => $item) {
+		foreach ($this->playLists as $id => $item) {
 			if ($item->hasTag($tag)) {
 				$list[$id] = $item;
 			}
@@ -117,8 +180,10 @@ class PlayList implements IModel
 	{
 		$result = $this->getProperties();
 
-		foreach ($this->items as $index => $item) {
-			$result['items'][$item->id] = $this->items[$index]->toArray();
+		$result['published'] = $this->published->format('c');
+		foreach ($this->playLists as $index => $playList) {
+			$result['playLists'][$playList->id] = $playList->toArray();
+			unset($result['playLists'][$index]);
 		}
 
 		return $result;

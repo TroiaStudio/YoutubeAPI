@@ -38,12 +38,12 @@ class Request
 
 
 	/**
-	 * @param string   $url
+	 * @param string $url
 	 *
-	 * @return mixed
+	 * @return \stdClass
 	 * @throws \Nette\Utils\JsonException
 	 */
-	public function getData(string $url)
+	public function getData(string $url): \stdClass
 	{
 		$link = sprintf($url, $this->apiKey);
 		$response = $this->httpClient->get($link, [

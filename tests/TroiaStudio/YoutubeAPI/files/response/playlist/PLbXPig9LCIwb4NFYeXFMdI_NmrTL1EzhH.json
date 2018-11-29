@@ -1,0 +1,48 @@
+{
+	"kind": "youtube#playlistItemListResponse",
+	"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/oV9LxvicPrLLz1VdYxC9LKnucaU\"",
+	"pageInfo": {
+		"totalResults": 1,
+		"resultsPerPage": 50
+	},
+	"items": [
+		{
+			"kind": "youtube#playlistItem",
+			"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/aubYGjB3_SVmCROGzjL3Hi2l2ic\"",
+			"id": "UExiWFBpZzlMQ0l3YjRORlllWEZNZElfTm1yVEwxRXpoSC41NkI0NEY2RDEwNTU3Q0M2",
+			"snippet": {
+				"publishedAt": "2017-02-28T16:35:48.000Z",
+				"channelId": "UCpZaOc0uEk9gWh-TS7B3A5g",
+				"title": "ZukynekTV wood intro",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/gr84kF37gso/default.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/gr84kF37gso/mqdefault.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/gr84kF37gso/hqdefault.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Jan Galek",
+				"playlistId": "PLbXPig9LCIwb4NFYeXFMdI_NmrTL1EzhH",
+				"position": 0,
+				"resourceId": {
+					"kind": "youtube#video",
+					"videoId": "gr84kF37gso"
+				}
+			},
+			"status": {
+				"privacyStatus": "public"
+			}
+		}
+	]
+}

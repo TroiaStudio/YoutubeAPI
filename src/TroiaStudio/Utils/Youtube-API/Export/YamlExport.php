@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Export;
 
 use Symfony\Component\Yaml\Yaml;
+use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
 
@@ -24,7 +25,13 @@ class YamlExport implements IExport
 
 	public function playList(PlayList $playList): string
 	{
-		return Yaml::dump($playList->toArray(), 10);
+		return Yaml::dump(['playlist' => $playList->toArray()], 10);
+	}
+
+
+	public function channel(Channel $channel): string
+	{
+		return Yaml::dump(['channel' => $channel->toArray()], 10);
 	}
 
 

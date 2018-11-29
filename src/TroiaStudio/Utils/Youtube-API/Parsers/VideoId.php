@@ -19,10 +19,6 @@ class VideoId implements IParser
 
 		preg_match($pattern, $value, $matches);
 
-		if (isset($matches[1])) {
-			return $matches[1];
-		}
-
-		return $value;
+		return $matches[1] ?? $value;
 	}
 }

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Export;
 
 use Nette\Neon\Neon;
+use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
 
@@ -24,7 +25,13 @@ class NeonExport implements IExport
 
 	public function playList(PlayList $playList): string
 	{
-		return Neon::encode($playList->toArray(), Neon::BLOCK);
+		return Neon::encode(['playlist' => $playList->toArray()], Neon::BLOCK);
+	}
+
+
+	public function channel(Channel $channel): string
+	{
+		return Neon::encode(['channel' => $channel->toArray()], Neon::BLOCK);
 	}
 
 

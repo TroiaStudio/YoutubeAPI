@@ -1,0 +1,57 @@
+{
+	"kind": "youtube#playlistListResponse",
+	"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/nVHbFatFLgcYm-hIqVqjTP7ejcs\"",
+	"nextPageToken": "CAEQAA",
+	"pageInfo": {
+		"totalResults": 2,
+		"resultsPerPage": 1
+	},
+	"items": [
+		{
+			"kind": "youtube#playlist",
+			"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/dPsd4_HfHAU7AOsIILhSchPCNR0\"",
+			"id": "PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo",
+			"snippet": {
+				"publishedAt": "2018-05-01T13:47:38.000Z",
+				"channelId": "UCpZaOc0uEk9gWh-TS7B3A5g",
+				"title": "OverWatch",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/zqTyJxGPg-Y/default.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/zqTyJxGPg-Y/mqdefault.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/zqTyJxGPg-Y/hqdefault.jpg",
+						"width": 480,
+						"height": 360
+					},
+					"standard": {
+						"url": "https://i.ytimg.com/vi/zqTyJxGPg-Y/sddefault.jpg",
+						"width": 640,
+						"height": 480
+					},
+					"maxres": {
+						"url": "https://i.ytimg.com/vi/zqTyJxGPg-Y/maxresdefault.jpg",
+						"width": 1280,
+						"height": 720
+					}
+				},
+				"channelTitle": "Jan Galek",
+				"localized": {
+					"title": "OverWatch",
+					"description": ""
+				}
+			},
+			"contentDetails": {
+				"itemCount": 7
+			}
+		}
+	]
+}

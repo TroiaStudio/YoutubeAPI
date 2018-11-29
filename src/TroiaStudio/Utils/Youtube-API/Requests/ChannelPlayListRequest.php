@@ -13,10 +13,10 @@ use TroiaStudio\YoutubeAPI\Loader;
 use TroiaStudio\YoutubeAPI\Requests\Request;
 
 
-class PlayListRequest
+class ChannelPlayListRequest
 {
-	public const LINK_PLAYLIST_ITEMS = Loader::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status,snippet&key=%s',
-		  LINK_PLAYLIST_ITEMS_PAGE = Loader::LINK . '/playlistItems?playlistId=%s&maxResults=%d&part=status,snippet&pageToken=%s&key=%s';
+	public const LINK_CHANNEL_PLAYLIST = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet&key=%s',
+		  LINK_CHANNEL_PLAYLIST_PAGE = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet&pageToken=%s&key=%s';
 
 	private $id;
 
@@ -41,7 +41,7 @@ class PlayListRequest
 		$this->id = $id;
 		$this->maxResults = $maxResults;
 		$this->request = $request;
-		$this->url = sprintf(self::LINK_PLAYLIST_ITEMS, $id, $maxResults, '%s');
+		$this->url = sprintf(self::LINK_CHANNEL_PLAYLIST, $id, $maxResults, '%s');
 	}
 
 
@@ -63,7 +63,7 @@ class PlayListRequest
 	 */
 	public function loadPage(string $pageToken): \stdClass
 	{
-		$this->url = sprintf(self::LINK_PLAYLIST_ITEMS_PAGE, $this->id, $this->maxResults, $pageToken, '%s');
+		$this->url = sprintf(self::LINK_CHANNEL_PLAYLIST_PAGE, $this->id, $this->maxResults, $pageToken, '%s');
 		return $this->load();
 	}
 }

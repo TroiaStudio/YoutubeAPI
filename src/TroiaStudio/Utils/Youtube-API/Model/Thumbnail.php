@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Model;
 
 
-class Thumbnail
+class Thumbnail implements IModel
 {
 	/**
 	 * @var string

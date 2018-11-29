@@ -1,0 +1,63 @@
+{
+	"kind": "youtube#channelListResponse",
+	"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/hQc4z2twxM7w3xOjpJGMjm2TtpU\"",
+	"pageInfo": {
+		"totalResults": 1,
+		"resultsPerPage": 1
+	},
+	"items": [
+		{
+			"kind": "youtube#channel",
+			"etag": "\"XI7nbFXulYBIpL0ayR_gDh3eu1k/Bz87VTenrOiIMepq_6N8F76EwlY\"",
+			"id": "UCpZaOc0uEk9gWh-TS7B3A5g",
+			"snippet": {
+				"title": "Jan Galek",
+				"description": "",
+				"customUrl": "jangalekprogramatorredaktor",
+				"publishedAt": "2013-04-27T22:21:54.000Z",
+				"thumbnails": {
+					"default": {
+						"url": "https://yt3.ggpht.com/a-/AN66SAzNNvT5d806GrB8jlUaKlzeHWQLID89eu_mhg=s88-mo-c-c0xffffffff-rj-k-no",
+						"width": 88,
+						"height": 88
+					},
+					"medium": {
+						"url": "https://yt3.ggpht.com/a-/AN66SAzNNvT5d806GrB8jlUaKlzeHWQLID89eu_mhg=s240-mo-c-c0xffffffff-rj-k-no",
+						"width": 240,
+						"height": 240
+					},
+					"high": {
+						"url": "https://yt3.ggpht.com/a-/AN66SAzNNvT5d806GrB8jlUaKlzeHWQLID89eu_mhg=s800-mo-c-c0xffffffff-rj-k-no",
+						"width": 800,
+						"height": 800
+					}
+				},
+				"localized": {
+					"title": "Jan Galek",
+					"description": ""
+				}
+			},
+			"contentDetails": {
+				"relatedPlaylists": {
+					"likes": "LLpZaOc0uEk9gWh-TS7B3A5g",
+					"favorites": "FLpZaOc0uEk9gWh-TS7B3A5g",
+					"uploads": "UUpZaOc0uEk9gWh-TS7B3A5g",
+					"watchHistory": "HL",
+					"watchLater": "WL"
+				}
+			},
+			"statistics": {
+				"viewCount": "128",
+				"commentCount": "0",
+				"subscriberCount": "7",
+				"hiddenSubscriberCount": false,
+				"videoCount": "18"
+			},
+			"status": {
+				"privacyStatus": "public",
+				"isLinked": true,
+				"longUploadsStatus": "allowed"
+			}
+		}
+	]
+}
