@@ -16,6 +16,14 @@ $resultVideo = $yamlExporter->video($video); // return string and $video param i
 $resultPlayList = $yamlExporter->playList($playList); // return string and $playList param is PlayList object
 ```
 
+## Neon
+
+```php
+$neonExporter = new \TroiaStudio\YoutubeAPI\Export\NeonExport();
+$resultVideo = $neonExporter->video($video); // return string and $video param is Video object
+$resultPlayList = $neonExporter->playList($playList); // return string and $playList param is PlayList object
+```
+
 ## How to save ?
 
 Now you can save easy by:
@@ -32,4 +40,8 @@ file_put_contents($file, $resultPlayList);
 \TroiaStudio\YoutubeAPI\Export\YamlExport::save($path, $filename, $resultPlayList);
 // or
 \TroiaStudio\YoutubeAPI\Export\JsonExport::save($path, $filename, $resultPlayList);
+// or
+\TroiaStudio\YoutubeAPI\Export\NeonExport::save($path, $filename, $resultPlayList);
 ```
+
+** Neon Export was added at 2.1.0
