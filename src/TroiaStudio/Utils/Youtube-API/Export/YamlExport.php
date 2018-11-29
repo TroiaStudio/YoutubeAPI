@@ -9,34 +9,56 @@ declare(strict_types=1);
 
 namespace TroiaStudio\YoutubeAPI\Export;
 
-use Symfony\Component\Yaml\Yaml;
 use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
+use TroiaStudio\YoutubeAPI\Transformers\YamlTransformer;
 
 
 class YamlExport implements IExport
 {
+
+	/**
+	 * @param Video $video
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\YamlTransformer::video
+	 * @return string
+	 */
 	public function video(Video $video): string
 	{
-		return Yaml::dump($video->toArray(), 10);
+		return YamlTransformer::video($video);
 	}
 
 
+	/**
+	 * @param PlayList $playList
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\YamlTransformer::playlist
+	 * @return string
+	 */
 	public function playList(PlayList $playList): string
 	{
-		return Yaml::dump(['playlist' => $playList->toArray()], 10);
+		return YamlTransformer::playlist($playList);
 	}
 
 
+	/**
+	 * @param Channel $channel
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\YamlTransformer::channel
+	 * @return string
+	 */
 	public function channel(Channel $channel): string
 	{
-		return Yaml::dump(['channel' => $channel->toArray()], 10);
+		return YamlTransformer::channel($channel);
 	}
 
 
+	/**
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\YamlTransformer::save
+	 * @param string $path
+	 * @param string $filename
+	 * @param string $content
+	 */
 	public static function save(string $path, string $filename, string $content): void
 	{
-		file_put_contents($path . '/' . $filename, $content);
+		YamlTransformer::save($path, $filename, $content);
 	}
 }

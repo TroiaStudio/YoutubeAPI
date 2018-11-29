@@ -15,15 +15,9 @@ use TroiaStudio\YoutubeAPI\Model\IModel;
 
 interface ITransformer
 {
-	public function fromFileToObject(string $file): IModel;
+	public static function fromFileToObject(string $file): ?IModel;
 
-	public function fromObjectToString(IModel $model): string;
+	public static function fromArrayToString(array $data): string;
 
 	public static function save(string $path, string $filename, string $content): void;
-
-	public function isChannel(): bool;
-
-	public function isPlayList(): bool;
-
-	public function isVideo(): bool;
 }

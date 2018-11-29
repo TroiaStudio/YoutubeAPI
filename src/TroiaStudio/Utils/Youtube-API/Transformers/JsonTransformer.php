@@ -10,42 +10,32 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Transformers;
 
 
-use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\IModel;
-use TroiaStudio\YoutubeAPI\Model\PlayList;
-use TroiaStudio\YoutubeAPI\Model\Video;
+use TroiaStudio\YoutubeAPI\Validators\Type;
 
 
-class JsonTransformer implements ITransformer
+class JsonTransformer extends AbstractTransformer
 {
-
-	public static function save(string $path, string $filename, string $content): void
+	public static function fromFileToObject(string $file): ?IModel
 	{
-		file_put_contents($path . '/' . $filename, $content);
+		$fileString = file_get_contents($file);
+
+		if ($fileString === false) {
+			return null;
+		}
+		$objectJson = json_decode($fileString);
+
+		if ($objectJson === false) {
+			return null;
+		}
+		/** @var IModel $object */
+		$object = Type::detect($objectJson);
+		return $object;
 	}
 
-	public function fromFileToObject(string $file): IModel
-	{
 
-	}
-
-	public function fromObjectToString(IModel $model): string
+	public static function fromArrayToString(array $data): string
 	{
-		return (string) json_encode($model->toArray());
-	}
-
-	public function isChannel(): bool
-	{
-		// TODO: Implement isChannel() method.
-	}
-
-	public function isPlayList(): bool
-	{
-		// TODO: Implement isPlayList() method.
-	}
-
-	public function isVideo(): bool
-	{
-		// TODO: Implement isVideo() method.
+		return (string) json_encode($data);
 	}
 }

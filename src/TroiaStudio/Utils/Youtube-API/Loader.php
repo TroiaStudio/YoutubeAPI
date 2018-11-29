@@ -16,6 +16,10 @@ use TroiaStudio\YoutubeAPI\Factories\VideoFactory;
 use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
+use TroiaStudio\YoutubeAPI\Model\Youtube\Channels;
+use TroiaStudio\YoutubeAPI\Model\Youtube\PlaylistItems;
+use TroiaStudio\YoutubeAPI\Model\Youtube\Playlists;
+use TroiaStudio\YoutubeAPI\Model\Youtube\Videos;
 use TroiaStudio\YoutubeAPI\Parsers\VideoId;
 use TroiaStudio\YoutubeAPI\Requests\ChannelPlayListRequest;
 use TroiaStudio\YoutubeAPI\Requests\ChannelRequest;
@@ -39,7 +43,7 @@ class Loader
 	private $maxResults;
 
 	/**
-	 * @var
+	 * @var Videos[]
 	 */
 	private $videoRequests = [];
 
@@ -70,13 +74,19 @@ class Loader
 	 * @return Video
 	 * @throws \Nette\Utils\JsonException
 	 * @throws \RuntimeException
+	 * @throws \JsonMapper_Exception
 	 */
 	public function video(string $id): Video
 	{
 		$id = VideoId::parse($id);
 		if (!isset($this->videoRequests[$id])) {
-			$this->videoRequests[$id] = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
+			$response = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
+			$mapper = new \JsonMapper();
+			/** @var Videos $videos */
+			$videos = $mapper->map($response, new Videos());
+			$this->videoRequests[$id] = $videos;
 		}
+
 
 		return VideoFactory::create($id, $this->videoRequests[$id]);
 	}
@@ -86,14 +96,19 @@ class Loader
 	 * @return PlayList
 	 * @throws \Nette\Utils\JsonException
 	 * @throws \RuntimeException
+	 * @throws \JsonMapper_Exception
 	 */
 	public function playList(string $id): PlayList
 	{
 		$this->playListRequests[$id] = new PlayListRequest($id, $this->maxResults, $this->request);
-		$request = $this->playListRequests[$id]->load();
+		$response = $this->playListRequests[$id]->load();
 
-		$playList = new PlayList($id, $request);
-		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
+		$mapper = new \JsonMapper();
+		/** @var Playlists $youtubePlaylist */
+		$youtubePlaylist = $mapper->map($response, new Playlists());
+
+		$playList = PlayList::create($id, $youtubePlaylist);
+		$nextPageToken = property_exists($response, 'nextPageToken') ? $response->nextPageToken : null;
 		$this->loadVideoPlayList($playList);
 
 		if ($nextPageToken !== null) {
@@ -109,13 +124,19 @@ class Loader
 	 *
 	 * @return Channel
 	 * @throws JsonException
+	 * @throws \JsonMapper_Exception
 	 */
 	public function channel(string $id): Channel
 	{
 		$this->channelRequests[$id] = new ChannelRequest($id, $this->request);
-		$request = $this->channelRequests[$id]->load();
+		$response = $this->channelRequests[$id]->load();
 
-		$channel = ChannelFactory::create($id, $request);
+
+		$mapper = new \JsonMapper();
+		/** @var Channels $youtubeChannel */
+		$youtubeChannel = $mapper->map($response, new Channels());
+
+		$channel = ChannelFactory::create($id, $youtubeChannel);
 		$this->loadChannelPlayLists($channel);
 
 		return $channel;
@@ -126,25 +147,26 @@ class Loader
 	 * @param Channel $channel
 	 *
 	 * @throws JsonException
+	 * @throws \JsonMapper_Exception
 	 */
 	public function loadChannelPlayLists(Channel $channel): void
 	{
 		$id = $channel->id;
 		$this->channelPlayListRequests[$id] = new ChannelPlayListRequest($id, $this->maxResults, $this->request);
-		$request = $this->channelPlayListRequests[$id]->load();
+		$response = $this->channelPlayListRequests[$id]->load();
 
-		$ids = ChannelPlayListFactory::get($request);
+		$mapper = new \JsonMapper();
+		/** @var PlaylistItems $youtubeChannelPlaylist */
+		$youtubeChannelPlaylist = $mapper->map($response, new PlaylistItems());
+		$ids = ChannelPlayListFactory::get($youtubeChannelPlaylist);
 
 		foreach ($ids as $index => $playListId) {
 			$playList = $this->playList($playListId);
-			var_dump($playList);
 			$channel->addPlayList($playList);
 		}
 
-		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
-
-		if ($nextPageToken !== null) {
-			$this->loadChannelVideoPlayListNextPage($channel, $nextPageToken);
+		if ($youtubeChannelPlaylist->nextPageToken !== null) {
+			$this->loadChannelVideoPlayListNextPage($channel, $youtubeChannelPlaylist->nextPageToken);
 		}
 	}
 
@@ -154,6 +176,7 @@ class Loader
 	 *
 	 * @throws JsonException
 	 * @throws \RuntimeException
+	 * @throws \JsonMapper_Exception
 	 */
 	private function loadVideoPlayList(PlayList $playList): void
 	{
@@ -170,6 +193,7 @@ class Loader
 	 *
 	 * @throws JsonException
 	 * @throws \RuntimeException
+	 * @throws \JsonMapper_Exception
 	 */
 	private function loadVideoPlayListNextPage(PlayList $playList, string $nextToken): void
 	{
@@ -192,20 +216,23 @@ class Loader
 	 * @param string  $nextToken
 	 *
 	 * @throws JsonException
+	 * @throws \JsonMapper_Exception
 	 */
 	private function loadChannelVideoPlayListNextPage(Channel $channel, string $nextToken): void
 	{
-		$request = $this->channelPlayListRequests[$channel->id]->loadPage($nextToken);
-		$nextPageToken = property_exists($request, 'nextPageToken') ? $request->nextPageToken : null;
+		$response = $this->channelPlayListRequests[$channel->id]->loadPage($nextToken);
 
-		$ids = ChannelPlayListFactory::get($request);
+		$mapper = new \JsonMapper();
+		/** @var PlaylistItems $youtubeChannelPlaylist */
+		$youtubeChannelPlaylist = $mapper->map($response, new PlaylistItems());
+		$ids = ChannelPlayListFactory::get($youtubeChannelPlaylist);
 
 		foreach ($ids as $index => $playListId) {
 			$channel->addPlayList($this->playList($playListId));
 		}
 
-		if ($nextPageToken !== null) {
-			$this->loadChannelVideoPlayListNextPage($playList, $nextPageToken);
+		if ($youtubeChannelPlaylist->nextPageToken !== null) {
+			$this->loadChannelVideoPlayListNextPage($channel, $youtubeChannelPlaylist->nextPageToken);
 		}
 	}
 }

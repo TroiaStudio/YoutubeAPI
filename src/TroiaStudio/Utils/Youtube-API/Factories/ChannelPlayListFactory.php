@@ -10,19 +10,19 @@ declare(strict_types=1);
 
 namespace TroiaStudio\YoutubeAPI\Factories;
 
-use Nette\Utils\DateTime;
-use TroiaStudio\YoutubeAPI\Model\Channel;
+
+use TroiaStudio\YoutubeAPI\Model\Youtube\PlaylistItems;
 
 
 class ChannelPlayListFactory
 {
 
 	/**
-	 * @param \stdClass $request
+	 * @param PlaylistItems $request
 	 *
 	 * @return array
 	 */
-	public static function get(\stdClass $request): array
+	public static function get(PlaylistItems $request): array
 	{
 		$result = [];
 

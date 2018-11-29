@@ -1,18 +1,28 @@
 <?php
 declare(strict_types=1);
 
-use Tester\Assert;
+namespace TroiaStudioTests\YoutubeAPI;
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$config = parse_ini_file(__DIR__ . '/../../php.ini');
-$apiKey = $config['YT_TOKEN'];
+use Tester\Assert;
+use TroiaStudio\YoutubeAPI\Requests\Request;
 
-$request = new \TroiaStudio\YoutubeAPI\Requests\Request($apiKey);
-$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 50);
-$video = $loader->video('zqTyJxGPg-Y');
 
-Assert::true($video instanceof \TroiaStudio\YoutubeAPI\Model\Video);
-Assert::same('https://www.youtube.com/watch?v=zqTyJxGPg-Y', $video->url);
-Assert::same('https://www.youtube.com/embed/zqTyJxGPg-Y', $video->embed);
-Assert::same('PT25S', $video->duration);
+class Loader extends AbstractTestClass
+{
+	public function testOne(): void
+	{
+		$request = \Mockery::mock(Request::class, ['SECRET_KEY']);
+		$this->setPlayListOverWatch($request, 2);
+		$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 2);
+		$video = $loader->video('zqTyJxGPg-Y');
+
+		Assert::true($video instanceof \TroiaStudio\YoutubeAPI\Model\Video);
+		Assert::same('https://www.youtube.com/watch?v=zqTyJxGPg-Y', $video->url);
+		Assert::same('https://www.youtube.com/embed/zqTyJxGPg-Y', $video->embed);
+		Assert::same('PT25S', $video->duration);
+	}
+}
+
+(new Loader())->run();

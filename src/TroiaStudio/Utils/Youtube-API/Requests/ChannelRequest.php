@@ -14,7 +14,7 @@ use TroiaStudio\YoutubeAPI\Loader;
 
 class ChannelRequest
 {
-	public const LINK_CHANNEL = Loader::LINK . '/channels?id=%s&part=status,snippet,contentDetails&key=%s';
+	public const LINK_CHANNEL = Loader::LINK . '/channels?id=%s&part=status,snippet,contentDetails,statistics&key=%s';
 
 	/**
 	 * @var string
@@ -32,6 +32,7 @@ class ChannelRequest
 		$this->request = $request;
 		$this->url = sprintf(self::LINK_CHANNEL, $id, '%s');
 	}
+
 
 	/**
 	 * @return mixed

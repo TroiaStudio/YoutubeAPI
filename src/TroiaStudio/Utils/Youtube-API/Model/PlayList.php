@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Model;
 
 
+use TroiaStudio\YoutubeAPI\Model\Youtube\Playlists;
+
+
 class PlayList implements IModel
 {
 
@@ -44,13 +47,20 @@ class PlayList implements IModel
 	public $items = [];
 
 
-	public function __construct(string $id, \stdClass $class)
+	public function __construct()
 	{
-		$this->id = $id;
-		$this->kind = $class->kind;
-		$this->etag = $class->etag;
-		$this->totalResults = $class->pageInfo->totalResults;
-		$this->resultsPerPage = $class->pageInfo->resultsPerPage;
+	}
+
+
+	public static function create(string $id, Playlists $class)
+	{
+		$playList = new self();
+		$playList->id = $id;
+		$playList->kind = $class->kind;
+		$playList->etag = $class->etag;
+		$playList->totalResults = $class->pageInfo->totalResults;
+		$playList->resultsPerPage = $class->pageInfo->resultsPerPage;
+		return $playList;
 	}
 
 

@@ -1,26 +1,36 @@
 <?php
 declare(strict_types=1);
 
-use Tester\Assert;
+namespace TroiaStudioTests\YoutubeAPI;
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$config = parse_ini_file(__DIR__ . '/../../php.ini');
-$apiKey = $config['YT_TOKEN'];
+use Tester\Assert;
+use TroiaStudio\YoutubeAPI\Requests\Request;
 
-$request = new \TroiaStudio\YoutubeAPI\Requests\Request($apiKey);
-$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 7);
 
-$playList = $loader->playList('PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo');
+class NeonExport extends AbstractTestClass
+{
+	public function testOne(): void
+	{
+		$request = \Mockery::mock(Request::class, ['SECRET_KEY']);
+		$this->setPlayListOverWatch($request, 2);
+		$loader = new \TroiaStudio\YoutubeAPI\Loader($request, 2);
 
-unset($playList->etag);
+		$playList = $loader->playList('PLbXPig9LCIwbjIr5i2aLz3FL6-LZjpVDo');
 
-foreach ($playList->items as $index => $video) {
-	unset($video->views);
+		unset($playList->etag);
+
+		foreach ($playList->items as $index => $video) {
+			unset($video->views);
+		}
+
+		$neonExporter = new \TroiaStudio\YoutubeAPI\Export\NeonExport();
+
+		file_put_contents(__DIR__ . '/temp/neon.neon', $neonExporter->playList($playList));
+
+		Assert::same(file_get_contents(__DIR__ . '/files/neon.neon'), file_get_contents(__DIR__ . '/temp/neon.neon'));
+	}
 }
 
-$neonExporter = new \TroiaStudio\YoutubeAPI\Export\NeonExport();
-
-file_put_contents(__DIR__ . '/temp/neon.neon', $neonExporter->playList($playList));
-
-Assert::same(file_get_contents(__DIR__ . '/files/neon.neon'), file_get_contents(__DIR__ . '/temp/neon.neon'));
+(new NeonExport())->run();

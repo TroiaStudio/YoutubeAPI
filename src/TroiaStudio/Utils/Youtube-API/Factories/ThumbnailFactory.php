@@ -12,23 +12,23 @@ namespace TroiaStudio\YoutubeAPI\Factories;
 
 
 use TroiaStudio\YoutubeAPI\Model\Thumbnail;
-
+use TroiaStudio\YoutubeAPI\Model\Youtube;
 
 class ThumbnailFactory
 {
 
 	/**
-	 * @param \stdClass $snippet
+	 * @param Youtube\Thumbnailable $snippet
 	 *
 	 * @return Thumbnail[]
-	 * @throws \Exception
 	 */
-	public static function get(\stdClass $snippet): array
+	public static function get(Youtube\Thumbnailable $snippet): array
 	{
 		$items = [];
+		$thumbnails = $snippet->getThumbnails();
 		foreach (['default', 'medium', 'high', 'standard', 'maxres'] as $thumb) {
-			if (isset($snippet->thumbnails->$thumb)) {
-				$th = $snippet->thumbnails->$thumb;
+			if (isset($thumbnails[$thumb])) {
+				$th = $thumbnails[$thumb];
 				$items[$thumb] = new Thumbnail($th->url, $th->width, $th->height);
 			}
 		}

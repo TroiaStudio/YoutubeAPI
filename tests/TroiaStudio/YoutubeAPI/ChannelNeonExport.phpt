@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace TroiaStudioTests\YoutubeAPI;
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -13,7 +12,6 @@ use TroiaStudio\YoutubeAPI\Requests\Request;
 
 class ChannelNeonExport extends AbstractTestClass
 {
-
 	public function testCountPlayList(): void
 	{
 		$request = \Mockery::mock(Request::class, ['SECRET_KEY']);
@@ -34,14 +32,11 @@ class ChannelNeonExport extends AbstractTestClass
 		$loader = new Loader($request, 7);
 		$channel = $loader->channel('UCpZaOc0uEk9gWh-TS7B3A5g');
 
-		var_dump($channel);
-
 		$neonExporter = new \TroiaStudio\YoutubeAPI\Export\NeonExport();
 		file_put_contents(__DIR__ . '/temp/channel.neon', $neonExporter->channel($channel));
 
 		Assert::same(file_get_contents(__DIR__ . '/files/channel.neon'), file_get_contents(__DIR__ . '/temp/channel.neon'));
 	}
-
 }
 
 (new ChannelNeonExport())->run();

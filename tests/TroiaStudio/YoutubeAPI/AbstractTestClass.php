@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace TroiaStudioTests\YoutubeAPI;
 
@@ -11,12 +11,10 @@ use TroiaStudio\YoutubeAPI\Loader;
 use TroiaStudio\YoutubeAPI\Requests\ChannelPlayListRequest;
 use TroiaStudio\YoutubeAPI\Requests\ChannelRequest;
 use TroiaStudio\YoutubeAPI\Requests\PlayListRequest;
-use TroiaStudio\YoutubeAPI\Requests\Request;
 
 
 abstract class AbstractTestClass extends TestCase
 {
-
 	public function setChannelRequest(MockInterface $request, int $maxResults = 7): void
 	{
 		$channelId = 'UCpZaOc0uEk9gWh-TS7B3A5g';
@@ -55,7 +53,6 @@ abstract class AbstractTestClass extends TestCase
 
 		$nextPageToken = 'CAEQAA';
 		$playListsRequestURI2 = sprintf(ChannelPlayListRequest::LINK_CHANNEL_PLAYLIST_PAGE, $channelId, $maxResults, $nextPageToken, '%s');
-		var_dump($playListsRequestURI2);
 		$playListsResponseJSON2 = file_get_contents(__DIR__ . '/files/response/request/playlistsRequest_1_1.json');
 		$playListsResponse2 = json_decode($playListsResponseJSON2);
 		$request->shouldReceive('getData')->withArgs([$playListsRequestURI2])

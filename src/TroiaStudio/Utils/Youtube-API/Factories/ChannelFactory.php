@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace TroiaStudio\YoutubeAPI\Factories;
 
-use Nette\Utils\DateTime;
 use TroiaStudio\YoutubeAPI\Model\Channel;
+use TroiaStudio\YoutubeAPI\Model\Youtube\Channels;
 
 
 class ChannelFactory
@@ -19,14 +19,18 @@ class ChannelFactory
 
 	/**
 	 * @param string $id
-	 * @param \stdClass $request
+	 * @param Channels $request
 	 *
 	 * @return Channel
 	 * @throws \Exception
 	 */
-	public static function create(string $id, \stdClass $request): Channel
+	public static function create(string $id, Channels $request): Channel
 	{
-		$items = $request->items[0];
+		if (!isset($request->items[0])) {
+			$items = $request;
+		} else {
+			$items = $request->items[0];
+		}
 
 		if (!isset($items->snippet, $items->contentDetails, $items->status, $items->statistics)) {
 			throw new \RuntimeException("Empty YouTube response, probably wrong '{$id}' channel id.");
@@ -43,7 +47,7 @@ class ChannelFactory
 		$channel->totalResults = $request->pageInfo->totalResults;
 		$channel->resultsPerPage = $request->pageInfo->resultsPerPage;
 
-		$channel->published = new DateTime($snippet->publishedAt);
+		$channel->setPublished($snippet->publishedAt);
 		$channel->title = $snippet->title;
 		$channel->description = $snippet->description;
 		$channel->url = 'https://www.youtube.com/channel/' . $id;
@@ -53,34 +57,6 @@ class ChannelFactory
 		$channel->subscriberCount = (int) $statistics->subscriberCount;
 		$channel->hiddenSubscriberCount = (bool) $statistics->hiddenSubscriberCount;
 		$channel->videoCount = (int) $statistics->videoCount;
-
-		foreach (ThumbnailFactory::get($snippet) as $res => $thumbnail) {
-			$channel->addThumbnail($res, $thumbnail);
-		}
-
-		return $channel;
-	}
-
-	public static function fromFile(\stdClass $class): Channel
-	{
-		$channel = new Channel();
-
-		$channel->id = $class->id;
-		$channel->kind = $class->kind;
-		$channel->etag = $class->etag;
-		$channel->totalResults = $class->totalResults;
-		$channel->resultsPerPage = $class->resultsPerPage;
-
-		$channel->published = new DateTime($class->publishedAt);
-		$channel->title = $class->title;
-		$channel->description = $class->description;
-		$channel->url = $class->url;
-		$channel->customUrl = $class->customUrl;
-		$channel->views = $class->viewCount;
-		$channel->commentCount = $class->commentCount;
-		$channel->subscriberCount = $class->subscriberCount;
-		$channel->hiddenSubscriberCount = $class->hiddenSubscriberCount;
-		$channel->videoCount = $class->videoCount;
 
 		foreach (ThumbnailFactory::get($snippet) as $res => $thumbnail) {
 			$channel->addThumbnail($res, $thumbnail);

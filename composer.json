@@ -29,7 +29,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "nette/http": "^2.4",
         "composer/ca-bundle": "^1.0",
-        "symfony/yaml": "^3.4.12|^4.1"
+        "symfony/yaml": "^3.4.12|^4.1",
+        "netresearch/jsonmapper": "^1.4"
     },
     "require-dev": {
         "nette/tester": "^1.7",
@@ -39,6 +40,11 @@
     },
     "scripts": {
         "cs": "php temp/coding-standard/ecs check src/ tests/ --config temp/coding-standard/coding-standard-php71.yml",
-        "fs": "php temp/coding-standard/ecs check src/ tests/ --config tests/coding-standard/coding-standard-php71.yml --fix"
+        "fs": "php temp/coding-standard/ecs check src/ tests/ --config tests/coding-standard/coding-standard-php71.yml --fix",
+        "tests": [
+            "vendor/bin/tester -c tests/php.ini tests",
+            "temp/coding-standard/ecs check src tests --config temp/coding-standard/coding-standard-php71.yml",
+            "vendor/bin/phpstan analyse -l max ./src/ ./tests/"
+        ]
     }
 }

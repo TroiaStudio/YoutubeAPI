@@ -111,6 +111,7 @@ channel:
 							height: 720
 
 					duration: PT25S
+					tags: []
 
 		PLbXPig9LCIwb4NFYeXFMdI_NmrTL1EzhH:
 			id: PLbXPig9LCIwb4NFYeXFMdI_NmrTL1EzhH
@@ -147,4 +148,5 @@ channel:
 						maxres: null
 
 					duration: PT11S
+					tags: []
 

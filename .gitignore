@@ -4,3 +4,4 @@ composer.lock
 tests/php.ini
 tests/TroiaStudio/YoutubeAPI/output
 temp/nette-coding-standard
+temp/coding-standard

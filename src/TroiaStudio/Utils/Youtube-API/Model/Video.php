@@ -4,12 +4,10 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Model;
 
 use DateTime;
-use Nette;
 
 
 class Video implements IModel
 {
-	use Nette\SmartObject;
 
 	/**
 	 * @var string
@@ -47,7 +45,7 @@ class Video implements IModel
 	public $embed;
 
 	/**
-	 * @var array<string, Thumbnail|null>
+	 * @var Thumbnail[]|array<string, null>
 	 */
 	public $thumbs = [
 		'default' => null,
@@ -65,7 +63,7 @@ class Video implements IModel
 	/**
 	 * @var array
 	 */
-	public $tags;
+	public $tags = [];
 
 
 	public function __construct()
@@ -104,10 +102,17 @@ class Video implements IModel
 
 		$result['published'] = $this->published->format('c');
 
-		if (empty($result['tags'])) {
-			unset($result['tags']);
-		}
-
 		return $result;
+	}
+
+
+	/**
+	 * @param string $published
+	 *
+	 * @throws \Exception
+	 */
+	public function setPublished(string $published): void
+	{
+		$this->published = new DateTime($published);
 	}
 }

@@ -15,8 +15,8 @@ use TroiaStudio\YoutubeAPI\Requests\Request;
 
 class ChannelPlayListRequest
 {
-	public const LINK_CHANNEL_PLAYLIST = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet&key=%s',
-		  LINK_CHANNEL_PLAYLIST_PAGE = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet&pageToken=%s&key=%s';
+	public const LINK_CHANNEL_PLAYLIST = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet,contentDetails&key=%s',
+		  LINK_CHANNEL_PLAYLIST_PAGE = Loader::LINK . '/playlists?channelId=%s&maxResults=%d&part=status,snippet,contentDetails&pageToken=%s&key=%s';
 
 	private $id;
 

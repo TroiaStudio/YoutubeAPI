@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace TroiaStudio\YoutubeAPI\Model;
 
 
-use Nette\Utils\DateTime;
+use DateTime;
 
 
 class Channel implements IModel
@@ -97,7 +97,7 @@ class Channel implements IModel
 	public $thumbs = [
 		'default' => null,
 		'medium' => null,
-		'high' => null
+		'high' => null,
 	];
 
 	/**
@@ -108,8 +108,8 @@ class Channel implements IModel
 
 	public function __construct()
 	{
-
 	}
+
 
 	public function addPlayList(PlayList $playList): void
 	{
@@ -120,53 +120,6 @@ class Channel implements IModel
 	public function addThumbnail(string $resolutionName, Thumbnail $thumbnail): void
 	{
 		$this->thumbs[$resolutionName] = $thumbnail;
-	}
-
-
-	/**
-	 * @param string $tag
-	 *
-	 * @return Video[]
-	 */
-	public function searchByTag(string $tag): array
-	{
-		$list = [];
-		foreach ($this->playLists as $id => $item) {
-			if ($item->hasTag($tag)) {
-				$list[$id] = $item;
-			}
-		}
-		return $list;
-	}
-
-
-	public function searchByTags(array $tags): array
-	{
-		$list = [[]];
-
-		foreach ($tags as $tag) {
-			$list[] = $this->searchByTag($tag);
-		}
-
-		$list = array_merge(...$list);
-
-		return $list;
-	}
-
-
-	public function searchByTagsStrict(array $items, array $tags): array
-	{
-		/** @var Video[] $list */
-		$list = $items;
-
-		foreach ($list as $id => $item) {
-			foreach ($tags as $tag) {
-				if (!$item->hasTag($tag)) {
-					unset($list[$id]);
-				}
-			}
-		}
-		return $list;
 	}
 
 
@@ -187,5 +140,16 @@ class Channel implements IModel
 		}
 
 		return $result;
+	}
+
+
+	/**
+	 * @param string $published
+	 *
+	 * @throws \Exception
+	 */
+	public function setPublished(string $published): void
+	{
+		$this->published = new DateTime($published);
 	}
 }

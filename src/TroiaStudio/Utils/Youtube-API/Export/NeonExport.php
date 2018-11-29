@@ -9,34 +9,56 @@ declare(strict_types=1);
 
 namespace TroiaStudio\YoutubeAPI\Export;
 
-use Nette\Neon\Neon;
 use TroiaStudio\YoutubeAPI\Model\Channel;
 use TroiaStudio\YoutubeAPI\Model\PlayList;
 use TroiaStudio\YoutubeAPI\Model\Video;
+use TroiaStudio\YoutubeAPI\Transformers\NeonTransformer;
 
 
 class NeonExport implements IExport
 {
+
+	/**
+	 * @param Video $video
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\NeonTransformer::video
+	 * @return string
+	 */
 	public function video(Video $video): string
 	{
-		return Neon::encode($video->toArray(), Neon::BLOCK);
+		return NeonTransformer::video($video);
 	}
 
 
+	/**
+	 * @param PlayList $playList
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\NeonTransformer::playlist
+	 * @return string
+	 */
 	public function playList(PlayList $playList): string
 	{
-		return Neon::encode(['playlist' => $playList->toArray()], Neon::BLOCK);
+		return NeonTransformer::playlist($playList);
 	}
 
 
+	/**
+	 * @param Channel $channel
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\NeonTransformer::channel
+	 * @return string
+	 */
 	public function channel(Channel $channel): string
 	{
-		return Neon::encode(['channel' => $channel->toArray()], Neon::BLOCK);
+		return NeonTransformer::channel($channel);
 	}
 
 
+	/**
+	 * @deprecated use \TroiaStudio\YoutubeAPI\Transformers\NeonTransformer::save
+	 * @param string $path
+	 * @param string $filename
+	 * @param string $content
+	 */
 	public static function save(string $path, string $filename, string $content): void
 	{
-		file_put_contents($path . '/' . $filename, $content);
+		NeonTransformer::save($path, $filename, $content);
 	}
 }

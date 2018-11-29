@@ -6,16 +6,6 @@ php:
   - 7.2
   - 7.3
 
-env:
-  global:
-    # YT_TOKEN
-    - secure Z6fH2sxCrNNjCnkQ0+4PLfMjFdGmVK7YsvpWsBkppOXQsCeVGMdMuJ/IcIzalFFf+SmRZbiiL7NUcjY8IIdGXCSJhrJY8zzF0oqmSzfWdgbuCQ7sCKlr9S2s5hn18w2tKAALJeSVefTN5PpXoCtTHDx25DQJyMtzsw8sPAHCYRv7l+zhUBDLsFb0DBZUcdEwqmKBJ2EqnVbWEuHQQeFU8K596VZrq5ddYBTN9UBbtCqpCNs1oWoVnDX+5iqzYUIPbTktSwcFKmZCM9qFjJ+dU94lZp33NcSTzb6HRIV7ZnnJo5P2SAFdKGll3KGQXvBBxI9ImauzES89/iawzrWeU7ud+7AsSrBK/vn6s0bmHYANsOCknuJbzJpaqmEQ91Qzg1dEbTkpudMObpXwAiRpzOpZUmIFkqs7mgtDpKDSmKNlt8mlOmLc0c1mTuxHckztCWbR0lHDB1AY+biBFYQn2rWtec+CWMLiuX2BEkY2go1A4dwom+c9WSJLlir6L+pS9YZezYvIqegB8P1BBqRaBloN4U3M1keslQh2zf3fQ2hwvG0bMp22jm0AsLz56qSqF0F8vJ4lq1q82VUv+ha8EuczaFUC01MI8+Rqs71IR3vuYeOaEx6zMBGqdpkl7/ydEkUCy7vtgSLBBS62s9k3fu/4MiARJK525Lfiw0gqSv4=
-
-before_install:
-  - echo "extension=php_curl.so" >> tests/php.ini
-  - echo "extension=php_json.so" >> tests/php.ini
-  - echo "YT_TOKEN=${YT_TOKEN}" >> tests/php.ini
-
 matrix:
   allow_failures:
     - php: 7.0
