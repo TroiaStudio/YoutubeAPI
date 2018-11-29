@@ -47,13 +47,11 @@ class Loader
 
 
 	/**
-	 * @param $id
-	 *
 	 * @return Video
 	 * @throws \Nette\Utils\JsonException
 	 * @throws \RuntimeException
 	 */
-	public function video($id): Video
+	public function video(string $id): Video
 	{
 		$id = VideoId::parse($id);
 		$request = $this->request->getData(sprintf(self::LINK_VIDEO, $id, '%s'));
@@ -62,13 +60,11 @@ class Loader
 
 
 	/**
-	 * @param $id
-	 *
 	 * @return PlayList
 	 * @throws \Nette\Utils\JsonException
 	 * @throws \RuntimeException
 	 */
-	public function playList($id): PlayList
+	public function playList(string $id): PlayList
 	{
 		$this->playListRequests[$id] = new PlayListRequest($id, $this->maxResults, $this->request);
 		$request = $this->playListRequests[$id]->load();

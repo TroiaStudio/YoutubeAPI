@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace TroiaStudio\YoutubeAPI\Model;
 
+use DateTime;
 use Nette;
-use TroiaStudio\YoutubeAPI\datetime;
 
 
 class Video
@@ -27,7 +27,7 @@ class Video
 	public $description;
 
 	/**
-	 * @var datetime
+	 * @var \DateTime
 	 */
 	public $published;
 
@@ -42,12 +42,12 @@ class Video
 	public $url;
 
 	/**
-	 * @var
+	 * @var string
 	 */
 	public $embed;
 
 	/**
-	 * @var Thumbnail[]
+	 * @var array<string, Thumbnail|null>
 	 */
 	public $thumbs = [
 		'default' => null,
@@ -90,10 +90,13 @@ class Video
 		$result = $this->getProperties();
 
 		foreach ($this->thumbs as $index => $item) {
+			if ( ! ($item instanceof Thumbnail)) {
+				continue;
+			}
 			$result['thumbs'][$index] = $item->toArray();
 		}
 
-		$result['published'] = (string) $this->published;
+		$result['published'] = $this->published->format('c');
 
 		if (empty($result['tags'])) {
 			unset($result['tags']);

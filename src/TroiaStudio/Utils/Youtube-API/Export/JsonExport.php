@@ -18,13 +18,13 @@ class JsonExport implements IExport
 {
 	public function video(Video $video): string
 	{
-		return json_encode($video->toArray());
+		return (string) json_encode($video->toArray());
 	}
 
 
 	public function playList(PlayList $playList): string
 	{
-		return json_encode($playList->toArray());
+		return (string) json_encode($playList->toArray());
 	}
 
 

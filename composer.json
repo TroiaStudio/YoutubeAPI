@@ -27,7 +27,8 @@
     },
     "require-dev": {
       "nette/tester": "^1.7",
-      "tracy/tracy": "@dev"
+      "tracy/tracy": "@dev",
+        "phpstan/phpstan": "^0.10.5"
     },
     "scripts": {
         "cs": "php temp/coding-standard/ecs check src/ tests/ --config temp/coding-standard/coding-standard-php71.yml",
